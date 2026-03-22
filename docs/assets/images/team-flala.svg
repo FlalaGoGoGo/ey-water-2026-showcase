@@ -1,0 +1,18 @@
+<svg width="800" height="920" viewBox="0 0 800 920" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="920" rx="44" fill="#151617"/>
+  <rect x="36" y="36" width="728" height="848" rx="32" fill="url(#paint0_linear)"/>
+  <circle cx="596" cy="196" r="126" fill="#FFE600" fill-opacity="0.1"/>
+  <circle cx="210" cy="728" r="180" fill="#FFE600" fill-opacity="0.08"/>
+  <rect x="100" y="96" width="220" height="18" rx="9" fill="#FFE600"/>
+  <path d="M188 602C188 481.602 285.602 384 406 384C526.398 384 624 481.602 624 602V696H188V602Z" fill="#232629"/>
+  <circle cx="406" cy="286" r="126" fill="#2D3135"/>
+  <path d="M268 724H544" stroke="#FFE600" stroke-width="6" stroke-linecap="round" stroke-opacity="0.35"/>
+  <text x="96" y="828" fill="#F5F5F0" font-family="Public Sans, Arial, sans-serif" font-size="92" font-weight="700">Flala Zhang</text>
+  <text x="98" y="154" fill="#F5F5F0" fill-opacity="0.82" font-family="Public Sans, Arial, sans-serif" font-size="38" font-weight="600" letter-spacing="6">TEAM MEMBER</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="88" y1="84" x2="734" y2="858" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#202224"/>
+      <stop offset="1" stop-color="#121314"/>
+    </linearGradient>
+  </defs>
+</svg>

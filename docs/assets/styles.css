@@ -274,6 +274,7 @@ code {
 }
 
 .pillar-grid,
+.team-grid,
 .timeline-grid,
 .lessons-grid,
 .repo-grid,
@@ -284,6 +285,10 @@ code {
 
 .pillar-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.team-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .timeline-grid,
@@ -381,6 +386,7 @@ code {
 }
 
 .pillar-card,
+.team-card,
 .timeline-card,
 .lesson-card,
 .repo-card,
@@ -393,6 +399,7 @@ code {
 }
 
 .pillar-card h3,
+.team-card h3,
 .timeline-card h3,
 .lesson-card h3,
 .repo-card h3,
@@ -412,10 +419,65 @@ code {
 
 .chart-card__copy p,
 .pillar-card p,
+.team-card p,
 .timeline-card p,
 .repo-card p,
 .lesson-card p {
   margin: 0;
+}
+
+.team-card {
+  display: grid;
+  gap: 18px;
+}
+
+.team-avatar {
+  width: 100%;
+  aspect-ratio: 4 / 4.6;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.team-card__body {
+  display: grid;
+  gap: 10px;
+}
+
+.team-card__eyebrow {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ey-yellow);
+}
+
+.team-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.035);
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.team-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 230, 0, 0.32);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.team-link__icon {
+  width: 18px;
+  height: 18px;
+  color: var(--ey-yellow);
 }
 
 .chart {
@@ -591,6 +653,7 @@ code {
 @media (max-width: 1120px) {
   .hero,
   .pillar-grid,
+  .team-grid,
   .timeline-grid,
   .lessons-grid,
   .repo-grid,
