@@ -125,7 +125,7 @@ code {
   grid-template-columns: 1.25fr 0.95fr;
   gap: 28px;
   padding: 42px;
-  min-height: 72vh;
+  min-height: clamp(440px, 48vh, 640px);
   border: 1px solid var(--surface-border);
   border-radius: 30px;
   background:
