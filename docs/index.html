@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EY Challenge Showcase | Clean Water Supply</title>
+    <meta
+      name="description"
+      content="An EY-inspired public showcase for an independent team project in the 2026 EY AI & Data Challenge."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script defer src="./assets/app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="topbar__brand">
+          <span class="ey-mark" aria-hidden="true"></span>
+          <div>
+            <p class="eyebrow">Independent Team Project</p>
+            <p class="brand-title">Clean Water Supply Showcase</p>
+          </div>
+        </div>
+        <nav class="topbar__nav">
+          <a href="#journey">Journey</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#lessons">Lessons</a>
+          <a href="#reproducibility">Repo</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero stagger is-visible">
+          <div class="hero__copy">
+            <p class="eyebrow">2026 EY AI &amp; Data Challenge</p>
+            <h1>
+              Building an <span class="accent">EY-inspired</span> case-study page
+              for our first machine learning competition.
+            </h1>
+            <p class="hero__lede" id="hero-tagline">
+              Loading project summary...
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" id="challenge-link" href="#" target="_blank" rel="noreferrer">
+                Challenge source
+              </a>
+              <a class="btn btn--secondary" id="official-repo-link" href="#" target="_blank" rel="noreferrer">
+                Official challenge repo
+              </a>
+            </div>
+            <p class="hero__disclaimer">
+              This page is an independent student-team showcase inspired by EY's
+              editorial design language. It is not an official EY property.
+            </p>
+          </div>
+
+          <div class="hero__panel">
+            <div class="metric-grid" id="hero-metrics"></div>
+          </div>
+        </section>
+
+        <section class="section stagger" id="overview">
+          <div class="section__header">
+            <p class="eyebrow">What We Built</p>
+            <h2>One story, one public page, many layers of evidence.</h2>
+            <p>
+              The goal of this showcase is to make the work legible for recruiters,
+              classmates, and technical peers at the same time: clear enough to scan,
+              but deep enough to prove the project was real.
+            </p>
+          </div>
+          <div class="pillar-grid" id="method-stack"></div>
+        </section>
+
+        <section class="section stagger" id="journey">
+          <div class="section__header">
+            <p class="eyebrow">Experiment Journey</p>
+            <h2>From benchmark reproduction to plateau analysis.</h2>
+            <p>
+              We tracked official submissions round by round, recorded failures,
+              and used those reviews to decide what to test next.
+            </p>
+          </div>
+          <div class="chart-card chart-card--wide">
+            <div class="chart-card__copy">
+              <h3>Leaderboard progression</h3>
+              <p>
+                Best and average score by official round. Milestone annotations
+                mark where the strategy noticeably changed.
+              </p>
+            </div>
+            <div class="chart" id="leaderboard-chart"></div>
+          </div>
+          <div class="timeline-grid" id="milestones"></div>
+        </section>
+
+        <section class="section stagger" id="evidence">
+          <div class="section__header">
+            <p class="eyebrow">Evidence Wall</p>
+            <h2>Representative charts from the workbench.</h2>
+            <p>
+              These visuals combine tracked leaderboard results, public challenge
+              data, and our own branch-level experimentation summaries.
+            </p>
+          </div>
+
+          <div class="evidence-grid">
+            <article class="chart-card chart-card--map">
+              <div class="chart-card__copy">
+                <h3>Training-site geography</h3>
+                <p>
+                  Approximate river sampling footprint across South Africa, sized
+                  by the number of observations per site.
+                </p>
+              </div>
+              <div class="chart" id="training-map"></div>
+            </article>
+
+            <article class="chart-card">
+              <div class="chart-card__copy">
+                <h3>Total alkalinity distribution</h3>
+                <p>Raw training distribution for one of the three targets.</p>
+              </div>
+              <div class="chart" id="hist-ta"></div>
+            </article>
+
+            <article class="chart-card">
+              <div class="chart-card__copy">
+                <h3>Electrical conductance distribution</h3>
+                <p>The EC target had strong leverage in several successful rounds.</p>
+              </div>
+              <div class="chart" id="hist-ec"></div>
+            </article>
+
+            <article class="chart-card">
+              <div class="chart-card__copy">
+                <h3>Dissolved reactive phosphorus distribution</h3>
+                <p>DRP remained the hardest target to improve safely.</p>
+              </div>
+              <div class="chart" id="hist-drp"></div>
+            </article>
+
+            <article class="chart-card chart-card--wide">
+              <div class="chart-card__copy">
+                <h3>Branch summary heatmap</h3>
+                <p>
+                  Mean offline branch performance by feature set and model family.
+                  This chart compresses a large number of tested combinations into
+                  one view.
+                </p>
+              </div>
+              <div class="chart" id="branch-heatmap"></div>
+            </article>
+
+            <article class="chart-card chart-card--wide">
+              <div class="chart-card__copy">
+                <h3>Top offline branches</h3>
+                <p>
+                  The highest-ranked branches from our summary table, shown with
+                  their mean validation score.
+                </p>
+              </div>
+              <div class="chart" id="branch-top-chart"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section stagger" id="lessons">
+          <div class="section__header">
+            <p class="eyebrow">What Worked / What Failed</p>
+            <h2>Good signals, dead ends, and the reviews that mattered.</h2>
+            <p>
+              We did not treat bad rounds as noise. They became design input for
+              the next experiments.
+            </p>
+          </div>
+
+          <div class="chart-card chart-card--wide">
+            <div class="chart-card__copy">
+              <h3>Selected experiments across the project arc</h3>
+              <p>
+                A compact comparison of benchmark, lift rounds, plateau winners,
+                and later strong-attack failures.
+              </p>
+            </div>
+            <div class="chart" id="worked-failed-chart"></div>
+          </div>
+
+          <div class="lessons-grid">
+            <article class="lesson-card">
+              <p class="eyebrow">Worked</p>
+              <div id="worked-list"></div>
+            </article>
+            <article class="lesson-card lesson-card--warning">
+              <p class="eyebrow">Failed</p>
+              <div id="failed-list"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section stagger" id="reproducibility">
+          <div class="section__header">
+            <p class="eyebrow">Repo &amp; Reproducibility</p>
+            <h2>Selected notebooks, public data summaries, and publishing-ready structure.</h2>
+            <p>
+              This public repo intentionally keeps the project readable. It includes
+              representative notebooks, the GitHub Pages site, and curated data
+              extracts rather than every intermediate artifact.
+            </p>
+          </div>
+
+          <div class="repo-grid">
+            <article class="repo-card">
+              <h3>Selected notebooks</h3>
+              <div id="notebook-list"></div>
+            </article>
+            <article class="repo-card">
+              <h3>Frontier files</h3>
+              <div id="frontier-list"></div>
+            </article>
+            <article class="repo-card">
+              <h3>Publishing notes</h3>
+              <ul class="repo-list">
+                <li>Use the <code>docs/</code> folder as the GitHub Pages source.</li>
+                <li>Keep the repo independent from any EY branding claims.</li>
+                <li>Update the repo URL in the README once the public repository is created.</li>
+                <li>Use the generated screenshots in <code>linkedin/</code> for the final post assets.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div>
+          <p class="eyebrow">Challenge source: EY</p>
+          <p>
+            Independent team project for the EY AI &amp; Data Challenge. All
+            commentary and packaging on this page were produced independently for
+            public portfolio use.
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

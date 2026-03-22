@@ -1,0 +1,1896 @@
+{
+  "summary": {
+    "project_title": "Optimizing Clean Water Supply",
+    "challenge_name": "2026 EY AI & Data Challenge",
+    "tagline": "An independent team project exploring water-quality prediction, external data enrichment, and leaderboard-driven model iteration.",
+    "best_score": 0.376,
+    "official_rounds": 45,
+    "official_submissions": 214,
+    "latest_round": 46,
+    "tracked_branch_notebooks": 180,
+    "public_notebooks": 5,
+    "samples": 9319,
+    "unique_sites": 162,
+    "date_start": "2011-01-02",
+    "date_end": "2015-12-31"
+  },
+  "frontier_methods": [
+    {
+      "file": "v37_5_ta40_ec40_push.csv",
+      "round": 37,
+      "score": 0.376,
+      "note": "Round37 balanced 40/40 boundary test set a new best and extended the Hydro corridor outward."
+    },
+    {
+      "file": "v38_1_ta40_ec40_control.csv",
+      "round": 38,
+      "score": 0.376,
+      "note": "Round38 control replay of 40/40 held the new best score."
+    },
+    {
+      "file": "v38_3_ta40_ec45_push.csv",
+      "round": 38,
+      "score": 0.376,
+      "note": "Round38 EC-leading 40/45 boundary push matched the best and extended EC-side headroom."
+    },
+    {
+      "file": "v38_4_ta45_ec40_push.csv",
+      "round": 38,
+      "score": 0.376,
+      "note": "Round38 TA-leading 45/40 boundary push also matched the best and extended TA-side headroom."
+    },
+    {
+      "file": "v38_5_chirps_delta_safe.csv",
+      "round": 38,
+      "score": 0.376,
+      "note": "Round38 CHIRPS wet-month EC guard stayed fully competitive and did not hurt the winner family."
+    },
+    {
+      "file": "v39_1_ta40_ec40_control.csv",
+      "round": 39,
+      "score": 0.376,
+      "note": "Round39 40/40 control replay stayed on the frontier."
+    },
+    {
+      "file": "v39_2_ta40_ec45_replay.csv",
+      "round": 39,
+      "score": 0.376,
+      "note": "Round39 40/45 replay confirmed EC-heavy boundary remains safe."
+    },
+    {
+      "file": "v39_3_ta45_ec40_replay.csv",
+      "round": 39,
+      "score": 0.376,
+      "note": "Round39 45/40 replay confirmed TA-heavy boundary remains safe."
+    },
+    {
+      "file": "v39_4_ta45_ec45_push.csv",
+      "round": 39,
+      "score": 0.376,
+      "note": "Round39 45/45 joint boundary push remained tied with the frontier and did not regress."
+    },
+    {
+      "file": "v39_5_chirps_delta_safe_v2.csv",
+      "round": 39,
+      "score": 0.376,
+      "note": "Round39 CHIRPS-guarded outer-boundary variant stayed fully tied and remained safe."
+    },
+    {
+      "file": "v40_1_ta45_ec45_control.csv",
+      "round": 40,
+      "score": 0.376,
+      "note": "Round40 45/45 control replay remained on the frontier."
+    },
+    {
+      "file": "v40_2_ta50_ec45_taheavy_safe.csv",
+      "round": 40,
+      "score": 0.376,
+      "note": "Round40 TA-heavy 50/45 safe probe stayed tied and confirmed TA-side headroom remains safe."
+    },
+    {
+      "file": "v40_3_ta45_ec50_echeavy_safe.csv",
+      "round": 40,
+      "score": 0.376,
+      "note": "Round40 EC-heavy 45/50 safe probe stayed tied and confirmed EC-side headroom remains safe."
+    },
+    {
+      "file": "v40_4_drp_micro_wet_guard.csv",
+      "round": 40,
+      "score": 0.376,
+      "note": "Round40 DRP wet-month micro guard was neutral and did not harm score."
+    },
+    {
+      "file": "v40_5_ta50_ec50_blended_push.csv",
+      "round": 40,
+      "score": 0.376,
+      "note": "Round40 blended 50/50 push with CHIRPS EC relaxation stayed tied and remained safe."
+    },
+    {
+      "file": "v41_1_ta45_ec45_control.csv",
+      "round": 41,
+      "score": 0.376,
+      "note": "Round41 45/45 control replay remained tied on the frontier."
+    },
+    {
+      "file": "v41_2_ta50_ec45_composite_safe.csv",
+      "round": 41,
+      "score": 0.376,
+      "note": "Round41 50/45 composite safe branch stayed tied with control."
+    },
+    {
+      "file": "v41_3_ta50_ec50_composite_push.csv",
+      "round": 41,
+      "score": 0.376,
+      "note": "Round41 50/50 composite push remained tied and did not break the plateau."
+    },
+    {
+      "file": "v41_4_ta55_ec50_chirps_safe.csv",
+      "round": 41,
+      "score": 0.376,
+      "note": "Round41 55/50 CHIRPS-gated safe branch stayed tied and confirmed outer-boundary safety."
+    },
+    {
+      "file": "v41_5_ta55_ec55_chirps_push.csv",
+      "round": 41,
+      "score": 0.376,
+      "note": "Round41 55/55 CHIRPS-gated push branch stayed tied and still did not break 0.376."
+    },
+    {
+      "file": "v42_1_ta45_ec45_control.csv",
+      "round": 42,
+      "score": 0.376,
+      "note": "Round42 stable control replay remained tied at the plateau."
+    },
+    {
+      "file": "v42_2_ta50_ec50_exploit_safe.csv",
+      "round": 42,
+      "score": 0.376,
+      "note": "Round42 exploit-safe replay remained tied at the plateau."
+    },
+    {
+      "file": "v42_3_ta55_ec55_exploit_push.csv",
+      "round": 42,
+      "score": 0.376,
+      "note": "Round42 exploit-push replay remained tied at the plateau."
+    },
+    {
+      "file": "v42_4_ta60_ec55_challenger_safe.csv",
+      "round": 42,
+      "score": 0.376,
+      "note": "Round42 outer-boundary challenger-safe branch remained tied at the plateau."
+    },
+    {
+      "file": "v42_5_ta60_ec60_challenger_push.csv",
+      "round": 42,
+      "score": 0.376,
+      "note": "Round42 outer-boundary challenger-push branch remained tied at the plateau."
+    },
+    {
+      "file": "v43_1_control_v42_1.csv",
+      "round": 43,
+      "score": 0.376,
+      "note": "Round43 primary control replay remained at the plateau."
+    },
+    {
+      "file": "v43_2_control_v42_3.csv",
+      "round": 43,
+      "score": 0.376,
+      "note": "Round43 secondary control replay also remained at the plateau."
+    },
+    {
+      "file": "v44_1_control_v43_1.csv",
+      "round": 44,
+      "score": 0.376,
+      "note": "Round44 primary control replay remained at the plateau."
+    },
+    {
+      "file": "v44_2_control_v43_2.csv",
+      "round": 44,
+      "score": 0.376,
+      "note": "Round44 secondary control replay remained at the plateau."
+    },
+    {
+      "file": "v44_3_power_ta_positive_safe.csv",
+      "round": 44,
+      "score": 0.376,
+      "note": "Round44 POWER TA-only positive safe branch was neutral and proved this narrower injection is online-safe."
+    },
+    {
+      "file": "v44_4_power_ta_positive_push.csv",
+      "round": 44,
+      "score": 0.376,
+      "note": "Round44 POWER TA-only positive push was also neutral and showed TA-only scaling can remain safe."
+    },
+    {
+      "file": "v44_5_power_ta_drp_event.csv",
+      "round": 44,
+      "score": 0.376,
+      "note": "Round44 POWER TA plus tiny DRP event gate remained neutral and did not hurt score."
+    },
+    {
+      "file": "v45_1_control_v44_1.csv",
+      "round": 45,
+      "score": 0.376,
+      "note": "Round45 primary control replay remained tied at the plateau."
+    },
+    {
+      "file": "v45_2_control_v44_2.csv",
+      "round": 45,
+      "score": 0.376,
+      "note": "Round45 secondary control replay remained tied at the plateau."
+    },
+    {
+      "file": "v45_3_power_ta_push_replay.csv",
+      "round": 45,
+      "score": 0.376,
+      "note": "Round45 replay of the proven POWER TA push remained neutral."
+    },
+    {
+      "file": "v45_4_power_chirps_ta_safe.csv",
+      "round": 45,
+      "score": 0.376,
+      "note": "Round45 POWER+CHIRPS TA-safe probe remained neutral despite real prediction changes."
+    },
+    {
+      "file": "v45_5_power_chirps_ta_drp.csv",
+      "round": 45,
+      "score": 0.376,
+      "note": "Round45 POWER+CHIRPS TA+DRP probe remained neutral so DRP micro-event edits still lack leaderboard leverage."
+    },
+    {
+      "file": "v46_1_control_v45_1.csv",
+      "round": 46,
+      "score": 0.376,
+      "note": "Round46 control replay held the plateau and remained the only safe frontier anchor."
+    }
+  ],
+  "leaderboard_by_round": [
+    {
+      "round": 1,
+      "best_score": 0.259,
+      "mean_score": 0.259,
+      "n_submissions": 1
+    },
+    {
+      "round": 2,
+      "best_score": 0.2849,
+      "mean_score": 0.2849,
+      "n_submissions": 1
+    },
+    {
+      "round": 3,
+      "best_score": 0.2479,
+      "mean_score": 0.2454,
+      "n_submissions": 2
+    },
+    {
+      "round": 5,
+      "best_score": 0.2849,
+      "mean_score": 0.2814,
+      "n_submissions": 5
+    },
+    {
+      "round": 6,
+      "best_score": 0.2849,
+      "mean_score": 0.2849,
+      "n_submissions": 5
+    },
+    {
+      "round": 7,
+      "best_score": 0.316,
+      "mean_score": 0.2557,
+      "n_submissions": 5
+    },
+    {
+      "round": 8,
+      "best_score": 0.322,
+      "mean_score": 0.3053,
+      "n_submissions": 5
+    },
+    {
+      "round": 9,
+      "best_score": 0.329,
+      "mean_score": 0.324,
+      "n_submissions": 5
+    },
+    {
+      "round": 10,
+      "best_score": 0.3499,
+      "mean_score": 0.338,
+      "n_submissions": 5
+    },
+    {
+      "round": 11,
+      "best_score": 0.329,
+      "mean_score": 0.2218,
+      "n_submissions": 5
+    },
+    {
+      "round": 12,
+      "best_score": 0.3539,
+      "mean_score": 0.3525,
+      "n_submissions": 5
+    },
+    {
+      "round": 13,
+      "best_score": 0.3589,
+      "mean_score": 0.3573,
+      "n_submissions": 5
+    },
+    {
+      "round": 14,
+      "best_score": 0.3639,
+      "mean_score": 0.3623,
+      "n_submissions": 5
+    },
+    {
+      "round": 15,
+      "best_score": 0.3659,
+      "mean_score": 0.3649,
+      "n_submissions": 5
+    },
+    {
+      "round": 16,
+      "best_score": 0.3659,
+      "mean_score": 0.3653,
+      "n_submissions": 5
+    },
+    {
+      "round": 17,
+      "best_score": 0.3659,
+      "mean_score": 0.3655,
+      "n_submissions": 5
+    },
+    {
+      "round": 18,
+      "best_score": 0.3659,
+      "mean_score": 0.3659,
+      "n_submissions": 5
+    },
+    {
+      "round": 19,
+      "best_score": 0.3659,
+      "mean_score": 0.3655,
+      "n_submissions": 5
+    },
+    {
+      "round": 20,
+      "best_score": 0.3659,
+      "mean_score": 0.3659,
+      "n_submissions": 5
+    },
+    {
+      "round": 21,
+      "best_score": 0.3689,
+      "mean_score": 0.3665,
+      "n_submissions": 5
+    },
+    {
+      "round": 22,
+      "best_score": 0.3689,
+      "mean_score": 0.3685,
+      "n_submissions": 5
+    },
+    {
+      "round": 23,
+      "best_score": 0.3689,
+      "mean_score": 0.3687,
+      "n_submissions": 5
+    },
+    {
+      "round": 24,
+      "best_score": 0.3689,
+      "mean_score": 0.3689,
+      "n_submissions": 5
+    },
+    {
+      "round": 25,
+      "best_score": 0.3689,
+      "mean_score": 0.3683,
+      "n_submissions": 5
+    },
+    {
+      "round": 26,
+      "best_score": 0.3689,
+      "mean_score": 0.3687,
+      "n_submissions": 5
+    },
+    {
+      "round": 27,
+      "best_score": 0.3689,
+      "mean_score": 0.3683,
+      "n_submissions": 5
+    },
+    {
+      "round": 28,
+      "best_score": 0.3719,
+      "mean_score": 0.3679,
+      "n_submissions": 5
+    },
+    {
+      "round": 29,
+      "best_score": 0.3729,
+      "mean_score": 0.3721,
+      "n_submissions": 5
+    },
+    {
+      "round": 30,
+      "best_score": 0.3729,
+      "mean_score": 0.3719,
+      "n_submissions": 5
+    },
+    {
+      "round": 31,
+      "best_score": 0.3729,
+      "mean_score": 0.3727,
+      "n_submissions": 5
+    },
+    {
+      "round": 32,
+      "best_score": 0.3729,
+      "mean_score": 0.3727,
+      "n_submissions": 5
+    },
+    {
+      "round": 33,
+      "best_score": 0.3729,
+      "mean_score": -0.2232,
+      "n_submissions": 5
+    },
+    {
+      "round": 34,
+      "best_score": 0.375,
+      "mean_score": 0.3729,
+      "n_submissions": 5
+    },
+    {
+      "round": 35,
+      "best_score": 0.375,
+      "mean_score": 0.3744,
+      "n_submissions": 5
+    },
+    {
+      "round": 36,
+      "best_score": 0.375,
+      "mean_score": 0.375,
+      "n_submissions": 5
+    },
+    {
+      "round": 37,
+      "best_score": 0.376,
+      "mean_score": 0.3752,
+      "n_submissions": 5
+    },
+    {
+      "round": 38,
+      "best_score": 0.376,
+      "mean_score": 0.3758,
+      "n_submissions": 5
+    },
+    {
+      "round": 39,
+      "best_score": 0.376,
+      "mean_score": 0.376,
+      "n_submissions": 5
+    },
+    {
+      "round": 40,
+      "best_score": 0.376,
+      "mean_score": 0.376,
+      "n_submissions": 5
+    },
+    {
+      "round": 41,
+      "best_score": 0.376,
+      "mean_score": 0.376,
+      "n_submissions": 5
+    },
+    {
+      "round": 42,
+      "best_score": 0.376,
+      "mean_score": 0.376,
+      "n_submissions": 5
+    },
+    {
+      "round": 43,
+      "best_score": 0.376,
+      "mean_score": 0.3717,
+      "n_submissions": 5
+    },
+    {
+      "round": 44,
+      "best_score": 0.376,
+      "mean_score": 0.376,
+      "n_submissions": 5
+    },
+    {
+      "round": 45,
+      "best_score": 0.376,
+      "mean_score": 0.376,
+      "n_submissions": 5
+    },
+    {
+      "round": 46,
+      "best_score": 0.376,
+      "mean_score": 0.2294,
+      "n_submissions": 5
+    }
+  ],
+  "training_map": [
+    {
+      "lat": -26.984722,
+      "lon": 26.632278,
+      "samples": 210
+    },
+    {
+      "lat": -26.970278,
+      "lon": 27.211111,
+      "samples": 187
+    },
+    {
+      "lat": -27.010111,
+      "lon": 26.698083,
+      "samples": 185
+    },
+    {
+      "lat": -26.880278,
+      "lon": 26.965,
+      "samples": 182
+    },
+    {
+      "lat": -26.648056,
+      "lon": 27.089444,
+      "samples": 178
+    },
+    {
+      "lat": -26.45,
+      "lon": 28.085833,
+      "samples": 175
+    },
+    {
+      "lat": -29.161667,
+      "lon": 23.696389,
+      "samples": 152
+    },
+    {
+      "lat": -26.861111,
+      "lon": 28.884722,
+      "samples": 149
+    },
+    {
+      "lat": -27.671111,
+      "lon": 27.236944,
+      "samples": 148
+    },
+    {
+      "lat": -27.00222,
+      "lon": 28.76528,
+      "samples": 148
+    },
+    {
+      "lat": -27.398611,
+      "lon": 26.614722,
+      "samples": 144
+    },
+    {
+      "lat": -29.744167,
+      "lon": 29.905833,
+      "samples": 134
+    },
+    {
+      "lat": -25.810483,
+      "lon": 27.909552,
+      "samples": 124
+    },
+    {
+      "lat": -25.20639,
+      "lon": 27.558,
+      "samples": 124
+    },
+    {
+      "lat": -25.127778,
+      "lon": 27.628889,
+      "samples": 120
+    },
+    {
+      "lat": -25.99136,
+      "lon": 27.84208,
+      "samples": 117
+    },
+    {
+      "lat": -26.73806,
+      "lon": 27.59194,
+      "samples": 114
+    },
+    {
+      "lat": -25.459639,
+      "lon": 28.264306,
+      "samples": 114
+    },
+    {
+      "lat": -28.116667,
+      "lon": 26.725278,
+      "samples": 114
+    },
+    {
+      "lat": -24.69514,
+      "lon": 27.40906,
+      "samples": 113
+    },
+    {
+      "lat": -28.1175,
+      "lon": 26.719444,
+      "samples": 107
+    },
+    {
+      "lat": -29.160278,
+      "lon": 26.573333,
+      "samples": 94
+    },
+    {
+      "lat": -27.169444,
+      "lon": 29.233889,
+      "samples": 93
+    },
+    {
+      "lat": -27.902778,
+      "lon": 24.615556,
+      "samples": 93
+    },
+    {
+      "lat": -28.141944,
+      "lon": 26.417778,
+      "samples": 91
+    },
+    {
+      "lat": -29.033333,
+      "lon": 23.983333,
+      "samples": 87
+    },
+    {
+      "lat": -27.273889,
+      "lon": 28.49,
+      "samples": 86
+    },
+    {
+      "lat": -27.3,
+      "lon": 28.586944,
+      "samples": 83
+    },
+    {
+      "lat": -28.376944,
+      "lon": 24.303056,
+      "samples": 82
+    },
+    {
+      "lat": -27.02314,
+      "lon": 28.59389,
+      "samples": 78
+    },
+    {
+      "lat": -29.641944,
+      "lon": 30.6875,
+      "samples": 78
+    },
+    {
+      "lat": -30.679722,
+      "lon": 26.7125,
+      "samples": 76
+    },
+    {
+      "lat": -29.380556,
+      "lon": 30.2775,
+      "samples": 74
+    },
+    {
+      "lat": -28.69485,
+      "lon": 28.23487,
+      "samples": 72
+    },
+    {
+      "lat": -27.935,
+      "lon": 26.126667,
+      "samples": 71
+    },
+    {
+      "lat": -30.160091,
+      "lon": 27.40124,
+      "samples": 70
+    },
+    {
+      "lat": -27.573056,
+      "lon": 24.746389,
+      "samples": 66
+    },
+    {
+      "lat": -25.73411,
+      "lon": 27.21422,
+      "samples": 66
+    },
+    {
+      "lat": -28.883333,
+      "lon": 27.89,
+      "samples": 66
+    },
+    {
+      "lat": -30.336111,
+      "lon": 27.359444,
+      "samples": 65
+    },
+    {
+      "lat": -30.830556,
+      "lon": 26.921389,
+      "samples": 64
+    },
+    {
+      "lat": -30.398056,
+      "lon": 30.601944,
+      "samples": 64
+    },
+    {
+      "lat": -27.4275,
+      "lon": 28.525833,
+      "samples": 64
+    },
+    {
+      "lat": -28.760833,
+      "lon": 17.730278,
+      "samples": 62
+    },
+    {
+      "lat": -30.860139,
+      "lon": 29.07125,
+      "samples": 62
+    },
+    {
+      "lat": -24.396194,
+      "lon": 27.089833,
+      "samples": 59
+    },
+    {
+      "lat": -29.161667,
+      "lon": 30.629722,
+      "samples": 58
+    },
+    {
+      "lat": -30.568333,
+      "lon": 29.422778,
+      "samples": 58
+    },
+    {
+      "lat": -29.615556,
+      "lon": 27.065278,
+      "samples": 57
+    },
+    {
+      "lat": -30.570833,
+      "lon": 29.150556,
+      "samples": 57
+    },
+    {
+      "lat": -33.501667,
+      "lon": 21.624167,
+      "samples": 57
+    },
+    {
+      "lat": -30.775867,
+      "lon": 29.032217,
+      "samples": 57
+    },
+    {
+      "lat": -31.000833,
+      "lon": 26.353056,
+      "samples": 57
+    },
+    {
+      "lat": -34.065833,
+      "lon": 20.404167,
+      "samples": 57
+    },
+    {
+      "lat": -27.389722,
+      "lon": 26.463889,
+      "samples": 56
+    },
+    {
+      "lat": -31.554722,
+      "lon": 29.245556,
+      "samples": 56
+    },
+    {
+      "lat": -24.058889,
+      "lon": 31.237222,
+      "samples": 55
+    },
+    {
+      "lat": -30.733889,
+      "lon": 29.828333,
+      "samples": 55
+    },
+    {
+      "lat": -31.031389,
+      "lon": 28.883333,
+      "samples": 55
+    },
+    {
+      "lat": -31.396,
+      "lon": 29.2651,
+      "samples": 55
+    },
+    {
+      "lat": -33.313889,
+      "lon": 19.074722,
+      "samples": 55
+    },
+    {
+      "lat": -32.595833,
+      "lon": 19.009444,
+      "samples": 54
+    },
+    {
+      "lat": -31.104278,
+      "lon": 29.399722,
+      "samples": 54
+    },
+    {
+      "lat": -28.404444,
+      "lon": 30.013056,
+      "samples": 54
+    },
+    {
+      "lat": -28.75,
+      "lon": 30.442778,
+      "samples": 54
+    },
+    {
+      "lat": -28.747778,
+      "lon": 31.745833,
+      "samples": 54
+    },
+    {
+      "lat": -34.075556,
+      "lon": 20.145556,
+      "samples": 53
+    },
+    {
+      "lat": -29.803611,
+      "lon": 30.516111,
+      "samples": 53
+    },
+    {
+      "lat": -27.802778,
+      "lon": 28.768333,
+      "samples": 52
+    },
+    {
+      "lat": -33.980556,
+      "lon": 21.653333,
+      "samples": 52
+    },
+    {
+      "lat": -33.7075,
+      "lon": 18.974444,
+      "samples": 52
+    },
+    {
+      "lat": -34.02861,
+      "lon": 22.22222,
+      "samples": 52
+    },
+    {
+      "lat": -27.5275,
+      "lon": 30.858056,
+      "samples": 52
+    },
+    {
+      "lat": -33.38056,
+      "lon": 19.30167,
+      "samples": 52
+    },
+    {
+      "lat": -28.058889,
+      "lon": 30.373611,
+      "samples": 52
+    },
+    {
+      "lat": -34.329722,
+      "lon": 18.990278,
+      "samples": 52
+    },
+    {
+      "lat": -33.897778,
+      "lon": 20.012778,
+      "samples": 51
+    },
+    {
+      "lat": -34.039722,
+      "lon": 22.133333,
+      "samples": 51
+    },
+    {
+      "lat": -33.13083,
+      "lon": 18.86278,
+      "samples": 51
+    },
+    {
+      "lat": -31.5653,
+      "lon": 18.3306,
+      "samples": 51
+    },
+    {
+      "lat": -27.602222,
+      "lon": 29.942778,
+      "samples": 50
+    },
+    {
+      "lat": -28.068333,
+      "lon": 31.55,
+      "samples": 50
+    },
+    {
+      "lat": -29.987778,
+      "lon": 29.851667,
+      "samples": 50
+    },
+    {
+      "lat": -33.818056,
+      "lon": 19.694722,
+      "samples": 50
+    },
+    {
+      "lat": -34.005833,
+      "lon": 22.351111,
+      "samples": 50
+    },
+    {
+      "lat": -28.801278,
+      "lon": 31.955389,
+      "samples": 49
+    },
+    {
+      "lat": -27.4,
+      "lon": 26.624722,
+      "samples": 49
+    },
+    {
+      "lat": -27.937778,
+      "lon": 31.209444,
+      "samples": 49
+    },
+    {
+      "lat": -30.534167,
+      "lon": 24.961944,
+      "samples": 49
+    },
+    {
+      "lat": -24.679167,
+      "lon": 30.8025,
+      "samples": 49
+    },
+    {
+      "lat": -33.970833,
+      "lon": 22.548333,
+      "samples": 49
+    },
+    {
+      "lat": -34.031944,
+      "lon": 22.053333,
+      "samples": 49
+    },
+    {
+      "lat": -32.502778,
+      "lon": 19.535833,
+      "samples": 48
+    },
+    {
+      "lat": -29.7775,
+      "lon": 29.470833,
+      "samples": 47
+    },
+    {
+      "lat": -28.445556,
+      "lon": 32.325,
+      "samples": 46
+    },
+    {
+      "lat": -28.735556,
+      "lon": 29.820556,
+      "samples": 46
+    },
+    {
+      "lat": -23.658056,
+      "lon": 31.05,
+      "samples": 45
+    },
+    {
+      "lat": -28.338333,
+      "lon": 31.373611,
+      "samples": 45
+    },
+    {
+      "lat": -34.405833,
+      "lon": 19.600556,
+      "samples": 44
+    },
+    {
+      "lat": -30.27402,
+      "lon": 30.69602,
+      "samples": 44
+    },
+    {
+      "lat": -34.250556,
+      "lon": 20.9925,
+      "samples": 44
+    },
+    {
+      "lat": -29.028629,
+      "lon": 24.638389,
+      "samples": 44
+    },
+    {
+      "lat": -34.092222,
+      "lon": 21.295278,
+      "samples": 43
+    },
+    {
+      "lat": -27.363611,
+      "lon": 31.783333,
+      "samples": 43
+    },
+    {
+      "lat": -24.183889,
+      "lon": 30.823889,
+      "samples": 43
+    },
+    {
+      "lat": -22.769722,
+      "lon": 30.886944,
+      "samples": 42
+    },
+    {
+      "lat": -27.495556,
+      "lon": 26.074722,
+      "samples": 41
+    },
+    {
+      "lat": -29.042222,
+      "lon": 24.6,
+      "samples": 41
+    },
+    {
+      "lat": -29.140556,
+      "lon": 31.391944,
+      "samples": 41
+    },
+    {
+      "lat": -33.870833,
+      "lon": 20.003333,
+      "samples": 40
+    },
+    {
+      "lat": -29.658056,
+      "lon": 25.973333,
+      "samples": 39
+    },
+    {
+      "lat": -24.282222,
+      "lon": 28.090278,
+      "samples": 38
+    },
+    {
+      "lat": -29.1825,
+      "lon": 23.575556,
+      "samples": 38
+    },
+    {
+      "lat": -28.768056,
+      "lon": 20.720556,
+      "samples": 37
+    },
+    {
+      "lat": -25.578778,
+      "lon": 29.127472,
+      "samples": 37
+    },
+    {
+      "lat": -26.905,
+      "lon": 32.324722,
+      "samples": 35
+    },
+    {
+      "lat": -28.96362,
+      "lon": 19.15486,
+      "samples": 35
+    },
+    {
+      "lat": -22.91028,
+      "lon": 29.61111,
+      "samples": 35
+    },
+    {
+      "lat": -27.044444,
+      "lon": 27.005,
+      "samples": 34
+    },
+    {
+      "lat": -24.670833,
+      "lon": 28.560833,
+      "samples": 34
+    },
+    {
+      "lat": -30.135739,
+      "lon": 30.674222,
+      "samples": 33
+    },
+    {
+      "lat": -31.860278,
+      "lon": 18.6875,
+      "samples": 32
+    },
+    {
+      "lat": -24.925278,
+      "lon": 29.324444,
+      "samples": 32
+    },
+    {
+      "lat": -32.94583,
+      "lon": 18.33667,
+      "samples": 31
+    },
+    {
+      "lat": -32.601389,
+      "lon": 18.750556,
+      "samples": 31
+    },
+    {
+      "lat": -33.088833,
+      "lon": 19.218783,
+      "samples": 30
+    },
+    {
+      "lat": -23.281,
+      "lon": 30.543056,
+      "samples": 28
+    },
+    {
+      "lat": -28.7115,
+      "lon": 24.072889,
+      "samples": 28
+    },
+    {
+      "lat": -22.225556,
+      "lon": 29.990556,
+      "samples": 27
+    },
+    {
+      "lat": -27.356667,
+      "lon": 27.286389,
+      "samples": 26
+    },
+    {
+      "lat": -26.03611,
+      "lon": 30.99778,
+      "samples": 26
+    },
+    {
+      "lat": -33.464444,
+      "lon": 18.740556,
+      "samples": 26
+    },
+    {
+      "lat": -25.447222,
+      "lon": 30.711667,
+      "samples": 25
+    },
+    {
+      "lat": -25.681111,
+      "lon": 31.783333,
+      "samples": 24
+    },
+    {
+      "lat": -23.838611,
+      "lon": 31.640833,
+      "samples": 23
+    },
+    {
+      "lat": -26.006389,
+      "lon": 29.253889,
+      "samples": 22
+    },
+    {
+      "lat": -22.935,
+      "lon": 28.004167,
+      "samples": 21
+    },
+    {
+      "lat": -25.49037,
+      "lon": 30.6986,
+      "samples": 21
+    },
+    {
+      "lat": -26.619444,
+      "lon": 27.980833,
+      "samples": 21
+    },
+    {
+      "lat": -24.99328,
+      "lon": 30.81444,
+      "samples": 20
+    },
+    {
+      "lat": -22.437722,
+      "lon": 31.078056,
+      "samples": 20
+    },
+    {
+      "lat": -23.235722,
+      "lon": 27.717,
+      "samples": 19
+    },
+    {
+      "lat": -23.763056,
+      "lon": 27.908611,
+      "samples": 19
+    },
+    {
+      "lat": -28.460833,
+      "lon": 21.248889,
+      "samples": 19
+    },
+    {
+      "lat": -25.362222,
+      "lon": 31.956667,
+      "samples": 18
+    },
+    {
+      "lat": -25.398889,
+      "lon": 31.610556,
+      "samples": 17
+    },
+    {
+      "lat": -25.149444,
+      "lon": 31.940556,
+      "samples": 16
+    },
+    {
+      "lat": -25.436111,
+      "lon": 31.982222,
+      "samples": 16
+    },
+    {
+      "lat": -29.651389,
+      "lon": 22.746389,
+      "samples": 15
+    },
+    {
+      "lat": -28.308889,
+      "lon": 31.9025,
+      "samples": 15
+    },
+    {
+      "lat": -25.513889,
+      "lon": 31.224444,
+      "samples": 15
+    },
+    {
+      "lat": -24.768889,
+      "lon": 31.39,
+      "samples": 15
+    },
+    {
+      "lat": -31.436944,
+      "lon": 20.474722,
+      "samples": 14
+    },
+    {
+      "lat": -29.758889,
+      "lon": 30.935278,
+      "samples": 13
+    },
+    {
+      "lat": -25.67386,
+      "lon": 31.57527,
+      "samples": 12
+    },
+    {
+      "lat": -26.510278,
+      "lon": 28.351389,
+      "samples": 11
+    },
+    {
+      "lat": -31.394444,
+      "lon": 20.947222,
+      "samples": 11
+    },
+    {
+      "lat": -24.9675,
+      "lon": 31.516667,
+      "samples": 10
+    },
+    {
+      "lat": -22.548889,
+      "lon": 28.898056,
+      "samples": 9
+    },
+    {
+      "lat": -24.958611,
+      "lon": 29.395278,
+      "samples": 7
+    },
+    {
+      "lat": -24.034167,
+      "lon": 31.123611,
+      "samples": 7
+    },
+    {
+      "lat": -33.722667,
+      "lon": 18.616917,
+      "samples": 6
+    }
+  ],
+  "target_distributions": {
+    "total_alkalinity": {
+      "centers": [
+        12.234917,
+        27.10475,
+        41.974583,
+        56.844417,
+        71.71425,
+        86.584083,
+        101.453917,
+        116.32375,
+        131.193583,
+        146.063417,
+        160.93325,
+        175.803083,
+        190.672917,
+        205.54275,
+        220.412583,
+        235.282417,
+        250.15225,
+        265.022083,
+        279.891917,
+        294.76175,
+        309.631583,
+        324.501417,
+        339.37125,
+        354.241083
+      ],
+      "counts": [
+        645,
+        657,
+        727,
+        653,
+        548,
+        604,
+        614,
+        686,
+        730,
+        574,
+        477,
+        538,
+        424,
+        340,
+        260,
+        215,
+        216,
+        139,
+        83,
+        52,
+        48,
+        20,
+        40,
+        29
+      ],
+      "min": 4.8,
+      "max": 361.676,
+      "mean": 119.108208,
+      "median": 113.3
+    },
+    "electrical_conductance": {
+      "centers": [
+        41.742857,
+        94.988571,
+        148.234286,
+        201.48,
+        254.725714,
+        307.971429,
+        361.217143,
+        414.462857,
+        467.708571,
+        520.954286,
+        574.2,
+        627.445714,
+        680.691429,
+        733.937143,
+        787.182857,
+        840.428571,
+        893.674286,
+        946.92,
+        1000.165714,
+        1053.411429,
+        1106.657143,
+        1159.902857,
+        1213.148571,
+        1266.394286,
+        1319.64,
+        1372.885714,
+        1426.131429,
+        1479.377143
+      ],
+      "counts": [
+        218,
+        869,
+        767,
+        786,
+        798,
+        609,
+        473,
+        487,
+        370,
+        332,
+        371,
+        496,
+        562,
+        439,
+        338,
+        221,
+        155,
+        143,
+        95,
+        85,
+        117,
+        83,
+        79,
+        100,
+        82,
+        48,
+        98,
+        98
+      ],
+      "min": 15.12,
+      "max": 1506.0,
+      "mean": 485.004146,
+      "median": 402.0
+    },
+    "dissolved_reactive_phosphorus": {
+      "centers": [
+        8.958333,
+        16.875,
+        24.791667,
+        32.708333,
+        40.625,
+        48.541667,
+        56.458333,
+        64.375,
+        72.291667,
+        80.208333,
+        88.125,
+        96.041667,
+        103.958333,
+        111.875,
+        119.791667,
+        127.708333,
+        135.625,
+        143.541667,
+        151.458333,
+        159.375,
+        167.291667,
+        175.208333,
+        183.125,
+        191.041667
+      ],
+      "counts": [
+        2904,
+        2944,
+        525,
+        306,
+        236,
+        175,
+        114,
+        160,
+        95,
+        190,
+        83,
+        78,
+        133,
+        106,
+        98,
+        85,
+        118,
+        65,
+        210,
+        178,
+        151,
+        120,
+        115,
+        130
+      ],
+      "min": 5.0,
+      "max": 195.0,
+      "mean": 43.525338,
+      "median": 20.0
+    }
+  },
+  "branch_top_table": [
+    {
+      "branch_id": "branch_176",
+      "feature_set": "spectral_external",
+      "model_name": "extra_trees",
+      "missing_strategy": "constant_zero",
+      "outlier_strategy": "winsorize_1_99",
+      "target_transform": "none",
+      "n_features": 43,
+      "r2_mean": 0.0956,
+      "r2_ta": 0.1741,
+      "r2_ec": 0.1132,
+      "r2_drp": -0.0005
+    },
+    {
+      "branch_id": "branch_152",
+      "feature_set": "spectral_external",
+      "model_name": "extra_trees",
+      "missing_strategy": "median",
+      "outlier_strategy": "winsorize_1_99",
+      "target_transform": "none",
+      "n_features": 43,
+      "r2_mean": 0.0927,
+      "r2_ta": 0.1703,
+      "r2_ec": 0.1139,
+      "r2_drp": -0.0059
+    },
+    {
+      "branch_id": "branch_170",
+      "feature_set": "spectral_external",
+      "model_name": "extra_trees",
+      "missing_strategy": "constant_zero",
+      "outlier_strategy": "none",
+      "target_transform": "none",
+      "n_features": 43,
+      "r2_mean": 0.0925,
+      "r2_ta": 0.1727,
+      "r2_ec": 0.1093,
+      "r2_drp": -0.0044
+    },
+    {
+      "branch_id": "branch_146",
+      "feature_set": "spectral_external",
+      "model_name": "extra_trees",
+      "missing_strategy": "median",
+      "outlier_strategy": "none",
+      "target_transform": "none",
+      "n_features": 43,
+      "r2_mean": 0.0904,
+      "r2_ta": 0.1627,
+      "r2_ec": 0.1124,
+      "r2_drp": -0.0039
+    },
+    {
+      "branch_id": "branch_158",
+      "feature_set": "spectral_external",
+      "model_name": "extra_trees",
+      "missing_strategy": "mean",
+      "outlier_strategy": "none",
+      "target_transform": "none",
+      "n_features": 43,
+      "r2_mean": 0.0884,
+      "r2_ta": 0.1665,
+      "r2_ec": 0.1116,
+      "r2_drp": -0.0129
+    },
+    {
+      "branch_id": "branch_140",
+      "feature_set": "spectral_full",
+      "model_name": "extra_trees",
+      "missing_strategy": "constant_zero",
+      "outlier_strategy": "winsorize_1_99",
+      "target_transform": "none",
+      "n_features": 40,
+      "r2_mean": 0.088,
+      "r2_ta": 0.1385,
+      "r2_ec": 0.1259,
+      "r2_drp": -0.0005
+    },
+    {
+      "branch_id": "branch_164",
+      "feature_set": "spectral_external",
+      "model_name": "extra_trees",
+      "missing_strategy": "mean",
+      "outlier_strategy": "winsorize_1_99",
+      "target_transform": "none",
+      "n_features": 43,
+      "r2_mean": 0.0864,
+      "r2_ta": 0.1723,
+      "r2_ec": 0.105,
+      "r2_drp": -0.0181
+    },
+    {
+      "branch_id": "branch_128",
+      "feature_set": "spectral_full",
+      "model_name": "extra_trees",
+      "missing_strategy": "mean",
+      "outlier_strategy": "winsorize_1_99",
+      "target_transform": "none",
+      "n_features": 40,
+      "r2_mean": 0.0825,
+      "r2_ta": 0.128,
+      "r2_ec": 0.1181,
+      "r2_drp": 0.0015
+    },
+    {
+      "branch_id": "branch_116",
+      "feature_set": "spectral_full",
+      "model_name": "extra_trees",
+      "missing_strategy": "median",
+      "outlier_strategy": "winsorize_1_99",
+      "target_transform": "none",
+      "n_features": 40,
+      "r2_mean": 0.0824,
+      "r2_ta": 0.1291,
+      "r2_ec": 0.1172,
+      "r2_drp": 0.0009
+    },
+    {
+      "branch_id": "branch_110",
+      "feature_set": "spectral_full",
+      "model_name": "extra_trees",
+      "missing_strategy": "median",
+      "outlier_strategy": "none",
+      "target_transform": "none",
+      "n_features": 40,
+      "r2_mean": 0.0783,
+      "r2_ta": 0.1247,
+      "r2_ec": 0.1123,
+      "r2_drp": -0.002
+    },
+    {
+      "branch_id": "branch_134",
+      "feature_set": "spectral_full",
+      "model_name": "extra_trees",
+      "missing_strategy": "constant_zero",
+      "outlier_strategy": "none",
+      "target_transform": "none",
+      "n_features": 40,
+      "r2_mean": 0.0767,
+      "r2_ta": 0.1259,
+      "r2_ec": 0.1081,
+      "r2_drp": -0.0038
+    },
+    {
+      "branch_id": "branch_122",
+      "feature_set": "spectral_full",
+      "model_name": "extra_trees",
+      "missing_strategy": "mean",
+      "outlier_strategy": "none",
+      "target_transform": "none",
+      "n_features": 40,
+      "r2_mean": 0.0762,
+      "r2_ta": 0.1237,
+      "r2_ec": 0.1061,
+      "r2_drp": -0.0013
+    }
+  ],
+  "branch_heatmap": {
+    "feature_order": [
+      "spectral_external",
+      "geo_time",
+      "spectral_full",
+      "landsat7",
+      "baseline4"
+    ],
+    "model_order": [
+      "extra_trees",
+      "random_forest",
+      "hist_gbr"
+    ],
+    "values": [
+      [
+        0.0383,
+        0.0001,
+        -0.0538
+      ],
+      [
+        0.016,
+        -0.0978,
+        -0.1033
+      ],
+      [
+        0.0221,
+        -0.1063,
+        -0.1049
+      ],
+      [
+        -0.3396,
+        -0.3116,
+        -0.3238
+      ],
+      [
+        -0.3357,
+        -0.333,
+        -0.3357
+      ]
+    ],
+    "counts": [
+      [
+        12,
+        12,
+        12
+      ],
+      [
+        12,
+        12,
+        12
+      ],
+      [
+        12,
+        12,
+        12
+      ],
+      [
+        12,
+        12,
+        12
+      ],
+      [
+        12,
+        12,
+        12
+      ]
+    ]
+  },
+  "milestones": [
+    {
+      "round": 1,
+      "title": "Benchmark Start",
+      "score": 0.259,
+      "phase": "Baseline",
+      "detail": "We started from the official benchmark and used it as the reproducibility anchor for every later round."
+    },
+    {
+      "round": 2,
+      "title": "Early Lift",
+      "score": 0.2849,
+      "phase": "Tuning",
+      "detail": "Target-wise tuning and cleaner search discipline produced the first meaningful jump."
+    },
+    {
+      "round": 7,
+      "title": "EC Signal Breakthrough",
+      "score": 0.316,
+      "phase": "Feature Search",
+      "detail": "Weather-enriched EC modeling became the first clear sign that external signals could help when used carefully."
+    },
+    {
+      "round": 10,
+      "title": "Corridor Regime",
+      "score": 0.3499,
+      "phase": "Calibration",
+      "detail": "TA/EC link calibration and near-region corrections moved the project into a much stronger operating regime."
+    },
+    {
+      "round": 15,
+      "title": "Stable TA Refinement",
+      "score": 0.3659,
+      "phase": "Refinement",
+      "detail": "TA-focused refinement became a reliable way to improve without sacrificing the rest of the stack."
+    },
+    {
+      "round": 37,
+      "title": "Hydro Corridor Peak",
+      "score": 0.376,
+      "phase": "Hydro Corridor",
+      "detail": "A hydro micro-corridor boundary push at 40/40 became the first confirmed frontier above the long 0.375 plateau."
+    },
+    {
+      "round": 42,
+      "title": "Plateau Confirmed",
+      "score": 0.376,
+      "phase": "Plateau",
+      "detail": "By round 42, safe pushes out to 60/60 still tied the same frontier, showing this family had become a stability baseline."
+    },
+    {
+      "round": 43,
+      "title": "POWER Reset Failure",
+      "score": 0.3709,
+      "phase": "Failure Review",
+      "detail": "The first NASA POWER attack regressed online, proving that broad direct replacement was not submission-safe."
+    },
+    {
+      "round": 44,
+      "title": "Recovery via Positive-Only Guards",
+      "score": 0.376,
+      "phase": "Recovery",
+      "detail": "Freezing EC and allowing only tiny positive TA deltas recovered safety and restored the frontier score."
+    },
+    {
+      "round": 46,
+      "title": "Strong Attack Postmortem",
+      "score": 0.376,
+      "phase": "Reset",
+      "detail": "A direct-family strong attack failed hard, which became one of the most useful failure analyses in the project."
+    }
+  ],
+  "worked_failed": {
+    "worked": [
+      {
+        "title": "Target-wise modeling",
+        "detail": "Separating TA, EC, and DRP decisions made the search much more controlled than one-size-fits-all modeling."
+      },
+      {
+        "title": "External data with tight safety gates",
+        "detail": "Landsat, TerraClimate, CHIRPS, hydro, terrain, and weather signals helped only when injected conservatively."
+      },
+      {
+        "title": "Risk-aware post-processing",
+        "detail": "Fallback logic, corridor boundaries, and replay anchors repeatedly prevented avoidable leaderboard collapses."
+      },
+      {
+        "title": "Failure reviews as part of the loop",
+        "detail": "Major review rounds and postmortems turned bad submissions into better strategy, not just frustration."
+      }
+    ],
+    "failed": [
+      {
+        "title": "Direct full replacement with new families",
+        "detail": "Aggressive swaps with POWER/CHIRPS-style families caused large online regressions when calibration drift was too broad."
+      },
+      {
+        "title": "Overly cautious micro-edits",
+        "detail": "Very safe DRP or tiny TA/EC edits often looked principled but could not move the leaderboard."
+      },
+      {
+        "title": "Family changes without anchoring",
+        "detail": "Changing model families alone was rarely enough; structure and calibration had to come with it."
+      }
+    ]
+  },
+  "method_stack": [
+    {
+      "label": "Core data",
+      "detail": "Official water quality training data, river coordinates, dates, Landsat, and TerraClimate features."
+    },
+    {
+      "label": "External signals",
+      "detail": "HydroBASINS, terrain, soil, CHIRPS rainfall, NASA POWER, and weather proxies were explored as additional context."
+    },
+    {
+      "label": "Model families",
+      "detail": "HGB, Extra Trees, KNN, graph smoothing, corridor logic, calibration layers, and target-wise blends."
+    },
+    {
+      "label": "Validation discipline",
+      "detail": "Repeated offline ranking, branch tracking, leaderboard feedback, and round-by-round strategy resets."
+    }
+  ],
+  "selected_notebooks": [
+    {
+      "title": "Official Benchmark Reference",
+      "path": "notebooks/reference_benchmark_model_notebook_snowflake.ipynb",
+      "summary": "The starting point provided by the official challenge package."
+    },
+    {
+      "title": "Round 11 EC Guard Notebook",
+      "path": "notebooks/v11_4_guard_ec.ipynb",
+      "summary": "A curated public notebook brief for the EC-focused stabilization phase."
+    },
+    {
+      "title": "Round 15 TA Refine Push",
+      "path": "notebooks/v15_3_ta_refine_push.ipynb",
+      "summary": "A curated public notebook brief for the TA-focused refinement phase that pushed the score into the mid 0.36 range."
+    },
+    {
+      "title": "Round 18 DRP Ultralight Probe",
+      "path": "notebooks/v18_5_ta_core_drp_ultralight.ipynb",
+      "summary": "A curated public notebook brief for a careful DRP probe without destabilizing the full submission."
+    },
+    {
+      "title": "Round 20 Structural TA+EC Notebook",
+      "path": "notebooks/v20_4_ta_ec_struct_farcal_alt.ipynb",
+      "summary": "A curated public notebook brief showing the move toward structural routing and corridor-aware adjustments."
+    }
+  ],
+  "links": {
+    "challenge_page": "https://challenge.ey.com/",
+    "official_repo": "https://github.com/Snowflake-Labs/EY-AI-and-Data-Challenge"
+  }
+}
