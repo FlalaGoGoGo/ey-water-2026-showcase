@@ -55,6 +55,7 @@ code {
 
 .page-shell {
   position: relative;
+  z-index: 1;
   width: min(100%, var(--content-max));
   margin: 0 auto;
   padding: 24px 24px 72px;
@@ -118,6 +119,8 @@ code {
 }
 
 .hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: 1.25fr 0.95fr;
   gap: 28px;
@@ -136,6 +139,7 @@ code {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   transform: translateX(55%) translateY(-30%) rotate(-12deg);
   background: linear-gradient(90deg, transparent, rgba(255, 230, 0, 0.09), transparent);
   pointer-events: none;
