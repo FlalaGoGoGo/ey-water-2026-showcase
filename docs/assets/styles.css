@@ -428,13 +428,16 @@ code {
 
 .team-card {
   display: grid;
-  gap: 18px;
+  align-content: start;
+  gap: 14px;
 }
 
 .team-avatar {
-  width: 100%;
-  aspect-ratio: 4 / 4.6;
+  width: 132px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1.12;
   object-fit: cover;
+  justify-self: start;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.03);
