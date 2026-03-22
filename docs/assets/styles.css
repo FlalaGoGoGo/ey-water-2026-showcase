@@ -292,6 +292,90 @@ code {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.analytics-shell {
+  padding: 12px 0 0;
+}
+
+.analytics-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.analytics-tab {
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.analytics-tab:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 230, 0, 0.32);
+}
+
+.analytics-tab.is-active {
+  background: var(--ey-yellow);
+  border-color: var(--ey-yellow);
+  color: #111;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.is-active {
+  display: block;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.filter-field {
+  display: grid;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.filter-field span {
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.filter-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: inherit;
+}
+
+.analytics-caption {
+  margin: 0 0 16px;
+  color: var(--text-muted);
+}
+
+.evidence-grid--analytics {
+  align-items: start;
+}
+
 .pillar-card,
 .timeline-card,
 .lesson-card,
@@ -336,8 +420,58 @@ code {
   margin-top: 14px;
 }
 
+.chart--medium {
+  min-height: 360px;
+}
+
+.chart--compact {
+  min-height: 240px;
+}
+
 .chart-card--map .chart {
   min-height: 430px;
+}
+
+.triple-chart-grid,
+.small-multiples-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.triple-chart-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.small-multiples-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.mini-chart-shell,
+.mini-card {
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.mini-chart-title {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mini-card__copy h4 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.mini-card__copy p {
+  margin: 0 0 8px;
+  color: var(--text-muted);
 }
 
 .timeline-card__phase {
@@ -456,7 +590,10 @@ code {
   .timeline-grid,
   .lessons-grid,
   .repo-grid,
-  .evidence-grid {
+  .evidence-grid,
+  .filter-row,
+  .triple-chart-grid,
+  .small-multiples-grid {
     grid-template-columns: 1fr;
   }
 

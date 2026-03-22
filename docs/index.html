@@ -104,71 +104,181 @@
         <section class="section stagger" id="evidence">
           <div class="section__header">
             <p class="eyebrow">Evidence Wall</p>
-            <h2>Representative charts from the workbench.</h2>
+            <h2>Tabbed analytics for strategy, journey, and target behavior.</h2>
             <p>
-              These visuals combine tracked leaderboard results, public challenge
-              data, and our own branch-level experimentation summaries.
+              The middle of the page is now organized as a hybrid analytics
+              section: one tab for model strategy, one for competition dynamics,
+              and one for target-level behavior.
             </p>
           </div>
 
-          <div class="evidence-grid">
-            <article class="chart-card chart-card--map">
-              <div class="chart-card__copy">
-                <h3>Training-site geography</h3>
-                <p>
-                  Approximate river sampling footprint across South Africa, sized
-                  by the number of observations per site.
-                </p>
-              </div>
-              <div class="chart" id="training-map"></div>
-            </article>
+          <div class="analytics-shell">
+            <div class="analytics-tabs" role="tablist" aria-label="Evidence tabs">
+              <button class="analytics-tab is-active" data-tab="strategy" role="tab" aria-selected="true">
+                Strategy Lab
+              </button>
+              <button class="analytics-tab" data-tab="journey" role="tab" aria-selected="false">
+                Competition Journey
+              </button>
+              <button class="analytics-tab" data-tab="target" role="tab" aria-selected="false">
+                Target Behavior
+              </button>
+            </div>
 
-            <article class="chart-card">
-              <div class="chart-card__copy">
-                <h3>Total alkalinity distribution</h3>
-                <p>Raw training distribution for one of the three targets.</p>
+            <div class="tab-panel is-active" data-panel="strategy">
+              <div class="filter-row">
+                <label class="filter-field">
+                  <span>Feature family</span>
+                  <select id="filter-feature"></select>
+                </label>
+                <label class="filter-field">
+                  <span>Model family</span>
+                  <select id="filter-model"></select>
+                </label>
+                <label class="filter-field">
+                  <span>Target emphasis</span>
+                  <select id="filter-emphasis"></select>
+                </label>
               </div>
-              <div class="chart" id="hist-ta"></div>
-            </article>
+              <p class="analytics-caption" id="strategy-filter-summary">
+                Loading branch filters...
+              </p>
 
-            <article class="chart-card">
-              <div class="chart-card__copy">
-                <h3>Electrical conductance distribution</h3>
-                <p>The EC target had strong leverage in several successful rounds.</p>
-              </div>
-              <div class="chart" id="hist-ec"></div>
-            </article>
+              <div class="evidence-grid evidence-grid--analytics">
+                <article class="chart-card">
+                  <div class="chart-card__copy">
+                    <h3>Method-family treemap</h3>
+                    <p>
+                      Feature sets, model families, and missing/outlier strategies
+                      are stacked hierarchically to show the breadth of the branch search.
+                    </p>
+                  </div>
+                  <div class="chart chart--medium" id="method-treemap"></div>
+                </article>
 
-            <article class="chart-card">
-              <div class="chart-card__copy">
-                <h3>Dissolved reactive phosphorus distribution</h3>
-                <p>DRP remained the hardest target to improve safely.</p>
-              </div>
-              <div class="chart" id="hist-drp"></div>
-            </article>
+                <article class="chart-card">
+                  <div class="chart-card__copy">
+                    <h3>Branch trade-off bubble chart</h3>
+                    <p>
+                      Each branch is positioned by TA and EC score, sized by feature
+                      count, and tagged by the target it emphasizes most.
+                    </p>
+                  </div>
+                  <div class="chart chart--medium" id="branch-bubble"></div>
+                </article>
 
-            <article class="chart-card chart-card--wide">
-              <div class="chart-card__copy">
-                <h3>Branch summary heatmap</h3>
-                <p>
-                  Mean offline branch performance by feature set and model family.
-                  This chart compresses a large number of tested combinations into
-                  one view.
-                </p>
+                <article class="chart-card chart-card--wide">
+                  <div class="chart-card__copy">
+                    <h3>Filtered branch heatmap</h3>
+                    <p>
+                      The same branch archive re-aggregated after filtering, useful
+                      for seeing which feature/model pockets stayed strongest.
+                    </p>
+                  </div>
+                  <div class="chart" id="branch-heatmap"></div>
+                </article>
               </div>
-              <div class="chart" id="branch-heatmap"></div>
-            </article>
+            </div>
 
-            <article class="chart-card chart-card--wide">
-              <div class="chart-card__copy">
-                <h3>Top offline branches</h3>
-                <p>
-                  The highest-ranked branches from our summary table, shown with
-                  their mean validation score.
-                </p>
+            <div class="tab-panel" data-panel="journey">
+              <div class="evidence-grid evidence-grid--analytics">
+                <article class="chart-card">
+                  <div class="chart-card__copy">
+                    <h3>Round distribution box plot</h3>
+                    <p>
+                      One box per official round, showing the full spread of uploaded
+                      scores instead of only the daily winner.
+                    </p>
+                  </div>
+                  <div class="chart chart--medium" id="round-boxplot"></div>
+                </article>
+
+                <article class="chart-card">
+                  <div class="chart-card__copy">
+                    <h3>Family frontier bump chart</h3>
+                    <p>
+                      Frontier method families are ranked over milestone rounds using
+                      cumulative best score up to each stage.
+                    </p>
+                  </div>
+                  <div class="chart chart--medium" id="family-bump-chart"></div>
+                </article>
+
+                <article class="chart-card chart-card--wide">
+                  <div class="chart-card__copy">
+                    <h3>Pivotal transition slope chart</h3>
+                    <p>
+                      Best, median, and worst submitted score across a handful of
+                      defining rounds, highlighting both lift and risk.
+                    </p>
+                  </div>
+                  <div class="chart" id="transition-slope-chart"></div>
+                </article>
               </div>
-              <div class="chart" id="branch-top-chart"></div>
-            </article>
+            </div>
+
+            <div class="tab-panel" data-panel="target">
+              <div class="evidence-grid evidence-grid--analytics">
+                <article class="chart-card chart-card--map">
+                  <div class="chart-card__copy">
+                    <h3>Training-site geography</h3>
+                    <p>
+                      Approximate river sampling footprint across South Africa, sized
+                      by the number of observations per site.
+                    </p>
+                  </div>
+                  <div class="chart" id="training-map"></div>
+                </article>
+
+                <article class="chart-card chart-card--wide">
+                  <div class="chart-card__copy">
+                    <h3>Raw target distributions</h3>
+                    <p>
+                      These three measurement distributions explain why one modeling
+                      recipe was unlikely to work equally well for TA, EC, and DRP.
+                    </p>
+                  </div>
+                  <div class="triple-chart-grid">
+                    <div class="mini-chart-shell">
+                      <p class="mini-chart-title">Total alkalinity</p>
+                      <div class="chart chart--compact" id="hist-ta"></div>
+                    </div>
+                    <div class="mini-chart-shell">
+                      <p class="mini-chart-title">Electrical conductance</p>
+                      <div class="chart chart--compact" id="hist-ec"></div>
+                    </div>
+                    <div class="mini-chart-shell">
+                      <p class="mini-chart-title">Dissolved reactive phosphorus</p>
+                      <div class="chart chart--compact" id="hist-drp"></div>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="chart-card chart-card--wide">
+                  <div class="chart-card__copy">
+                    <h3>Target difficulty small multiples</h3>
+                    <p>
+                      Offline branch-score distributions show that EC was the easiest
+                      target to move, while DRP stayed narrow and low-leverage.
+                    </p>
+                  </div>
+                  <div class="small-multiples-grid">
+                    <article class="mini-card">
+                      <div class="mini-card__copy" id="target-summary-ta"></div>
+                      <div class="chart chart--compact" id="target-violin-ta"></div>
+                    </article>
+                    <article class="mini-card">
+                      <div class="mini-card__copy" id="target-summary-ec"></div>
+                      <div class="chart chart--compact" id="target-violin-ec"></div>
+                    </article>
+                    <article class="mini-card">
+                      <div class="mini-card__copy" id="target-summary-drp"></div>
+                      <div class="chart chart--compact" id="target-violin-drp"></div>
+                    </article>
+                  </div>
+                </article>
+              </div>
+            </div>
           </div>
         </section>
 

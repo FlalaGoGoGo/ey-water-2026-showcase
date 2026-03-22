@@ -9,11 +9,44 @@ const palette = {
   bg: "#17191b",
   text: "#f5f5f0",
   muted: "#b8bbb7",
+  soft: "#8f9491",
   grid: "rgba(255,255,255,0.08)",
   yellow: "#ffe600",
-  yellowSoft: "rgba(255,230,0,0.2)",
+  yellowSoft: "rgba(255,230,0,0.18)",
   green: "#9cd18b",
   orange: "#ffb37d",
+  red: "#ff7d7d",
+  cyan: "#7dd3fc",
+  modelColors: {
+    extra_trees: "#ffe600",
+    hist_gbr: "#9cd18b",
+    random_forest: "#f5f5f0",
+  },
+  emphasisColors: {
+    Balanced: "rgba(255,230,0,0.8)",
+    TA: "#ffe600",
+    EC: "#ffd166",
+    DRP: "#9cd18b",
+  },
+  familyColors: {
+    "Control anchor": "#f5f5f0",
+    "Weather / EC route": "#7dd3fc",
+    "TA refinement line": "#ffe600",
+    "Graph / remote routing": "#ffb37d",
+    "Hydro micro corridor": "#9cd18b",
+    "POWER / CHIRPS probes": "#ff7d7d",
+  },
+};
+
+const analyticsState = {
+  activeTab: "strategy",
+  filters: {
+    feature: "all",
+    model: "all",
+    emphasis: "all",
+  },
+  data: null,
+  renderedTabs: new Set(),
 };
 
 function inferRepoBaseUrl() {
@@ -52,12 +85,14 @@ function themeLayout(overrides = {}) {
       zerolinecolor: palette.grid,
       tickfont: { color: palette.muted },
       titlefont: { color: palette.muted },
+      automargin: true,
     },
     yaxis: {
       gridcolor: palette.grid,
       zerolinecolor: palette.grid,
       tickfont: { color: palette.muted },
       titlefont: { color: palette.muted },
+      automargin: true,
     },
     legend: {
       orientation: "h",
@@ -114,9 +149,8 @@ function heroCards(summary) {
 
 function renderHero(summary) {
   document.getElementById("hero-tagline").textContent = summary.tagline;
-  const metrics = heroCards(summary);
   const container = document.getElementById("hero-metrics");
-  container.innerHTML = metrics
+  container.innerHTML = heroCards(summary)
     .map(
       (metric) => `
         <article class="metric-card">
@@ -216,6 +250,13 @@ function renderFrontier(items) {
     .join("");
 }
 
+function bindLinks(links) {
+  const challengeLink = document.getElementById("challenge-link");
+  const officialRepoLink = document.getElementById("official-repo-link");
+  challengeLink.href = links.challenge_page;
+  officialRepoLink.href = links.official_repo;
+}
+
 function renderLeaderboardChart(data) {
   const rounds = data.leaderboard_by_round.map((row) => row.round);
   const best = data.leaderboard_by_round.map((row) => row.best_score);
@@ -233,6 +274,7 @@ function renderLeaderboardChart(data) {
         name: "Best score",
         line: { color: palette.yellow, width: 3 },
         marker: { size: 7, color: palette.yellow },
+        hovertemplate: "Round %{x}<br>Best %{y:.3f}<extra></extra>",
       },
       {
         x: rounds,
@@ -241,6 +283,7 @@ function renderLeaderboardChart(data) {
         mode: "lines",
         name: "Round mean",
         line: { color: "#7e8481", width: 2, dash: "dot" },
+        hovertemplate: "Round %{x}<br>Mean %{y:.3f}<extra></extra>",
       },
       {
         x: milestones.map((item) => item.round),
@@ -256,6 +299,7 @@ function renderLeaderboardChart(data) {
           color: palette.green,
           line: { color: palette.bg, width: 2 },
         },
+        hovertemplate: "Round %{x}<br>%{text}<br>Score %{y:.3f}<extra></extra>",
       },
     ],
     themeLayout({
@@ -318,6 +362,7 @@ function renderTrainingMap(data) {
         showocean: true,
         oceancolor: "#121315",
         lakecolor: "#121315",
+        coastlinecolor: "rgba(255,255,255,0.12)",
         projection: { type: "mercator" },
         center: { lat: -29, lon: 25 },
         lonaxis: { range: [15, 35] },
@@ -353,12 +398,296 @@ function renderHistogram(targetId, series, color, xTitle) {
   );
 }
 
-function renderHeatmap(data) {
-  const text = data.branch_heatmap.values.map((row, rowIndex) =>
+function renderWorkedFailedChart() {
+  const points = [
+    { label: "Round 1 benchmark", score: 0.259, color: "#6d716f" },
+    { label: "Round 2 tuned baseline", score: 0.2849, color: "#a1a7a3" },
+    { label: "Round 7 EC weather lift", score: 0.316, color: palette.green },
+    { label: "Round 37 hydro corridor", score: 0.376, color: palette.yellow },
+    { label: "Round 44 guarded POWER recovery", score: 0.376, color: palette.green },
+    { label: "Round 46 direct safe swap", score: 0.3659, color: palette.orange },
+    { label: "Round 46 strong push", score: 0.069, color: palette.red },
+    { label: "Round 46 strong alt", score: -0.017, color: "#ff5252" },
+  ];
+
+  Plotly.newPlot(
+    "worked-failed-chart",
+    [
+      {
+        x: points.map((item) => item.label),
+        y: points.map((item) => item.score),
+        type: "bar",
+        marker: { color: points.map((item) => item.color) },
+        hovertemplate: "%{x}<br>Score %{y:.4f}<extra></extra>",
+      },
+    ],
+    themeLayout({
+      margin: { l: 56, r: 24, t: 10, b: 120 },
+      xaxis: { tickangle: -22 },
+      yaxis: { title: "Leaderboard score", tickformat: ".3f" },
+      showlegend: false,
+    }),
+    plotConfig
+  );
+}
+
+function populateFilterSelect(selectId, options) {
+  const select = document.getElementById(selectId);
+  const niceLabel = {
+    "all": "All",
+    extra_trees: "Extra Trees",
+    hist_gbr: "HistGBR",
+    random_forest: "Random Forest",
+    baseline4: "Baseline4",
+    geo_time: "Geo Time",
+    landsat7: "Landsat7",
+    spectral_external: "Spectral External",
+    spectral_full: "Spectral Full",
+  };
+
+  select.innerHTML = ["all", ...options]
+    .map((value) => `<option value="${value}">${niceLabel[value] || value}</option>`)
+    .join("");
+}
+
+function filteredBranchPoints() {
+  const { feature, model, emphasis } = analyticsState.filters;
+  return analyticsState.data.branch_scatter_points.filter((row) => {
+    if (feature !== "all" && row.feature_set !== feature) {
+      return false;
+    }
+    if (model !== "all" && row.model_name !== model) {
+      return false;
+    }
+    if (emphasis !== "all" && row.target_emphasis !== emphasis) {
+      return false;
+    }
+    return true;
+  });
+}
+
+function buildFilteredFamilyAggregate(points) {
+  const buckets = new Map();
+  points.forEach((row) => {
+    const key = [row.feature_set, row.model_name, row.strategy_label].join("||");
+    if (!buckets.has(key)) {
+      buckets.set(key, {
+        feature_set: row.feature_set,
+        model_name: row.model_name,
+        strategy_label: row.strategy_label,
+        branch_count: 0,
+        scoreTotal: 0,
+        maxScore: -Infinity,
+        featureTotal: 0,
+      });
+    }
+    const bucket = buckets.get(key);
+    bucket.branch_count += 1;
+    bucket.scoreTotal += row.r2_mean;
+    bucket.maxScore = Math.max(bucket.maxScore, row.r2_mean);
+    bucket.featureTotal += row.n_features;
+  });
+
+  return [...buckets.values()]
+    .map((bucket) => ({
+      feature_set: bucket.feature_set,
+      model_name: bucket.model_name,
+      strategy_label: bucket.strategy_label,
+      branch_count: bucket.branch_count,
+      mean_score: bucket.scoreTotal / bucket.branch_count,
+      max_score: bucket.maxScore,
+      avg_features: bucket.featureTotal / bucket.branch_count,
+    }))
+    .sort((a, b) => b.mean_score - a.mean_score);
+}
+
+function buildFilteredHeatmap(points) {
+  const featureOrder = analyticsState.data.strategy_filters.feature_set;
+  const modelOrder = analyticsState.data.strategy_filters.model_name;
+  const grouped = new Map();
+
+  points.forEach((row) => {
+    const key = `${row.feature_set}||${row.model_name}`;
+    if (!grouped.has(key)) {
+      grouped.set(key, { total: 0, count: 0 });
+    }
+    const bucket = grouped.get(key);
+    bucket.total += row.r2_mean;
+    bucket.count += 1;
+  });
+
+  const values = featureOrder.map((feature) =>
+    modelOrder.map((model) => {
+      const bucket = grouped.get(`${feature}||${model}`);
+      return bucket ? Number((bucket.total / bucket.count).toFixed(4)) : null;
+    })
+  );
+  const counts = featureOrder.map((feature) =>
+    modelOrder.map((model) => {
+      const bucket = grouped.get(`${feature}||${model}`);
+      return bucket ? bucket.count : 0;
+    })
+  );
+
+  return {
+    feature_order: featureOrder,
+    model_order: modelOrder,
+    values,
+    counts,
+  };
+}
+
+function renderStrategySummary(points) {
+  const target = document.getElementById("strategy-filter-summary");
+  if (!points.length) {
+    target.textContent = "No branches match the current filter combination. Reset one of the filters to bring the strategy view back.";
+    return;
+  }
+  const mean = points.reduce((sum, row) => sum + row.r2_mean, 0) / points.length;
+  const best = Math.max(...points.map((row) => row.r2_mean));
+  target.textContent = `${points.length} branches in view. Filtered mean offline R² ${mean.toFixed(4)} and best filtered branch ${best.toFixed(4)}.`;
+}
+
+function renderMethodTreemap(points) {
+  const rows = buildFilteredFamilyAggregate(points);
+  const labels = ["All strategies"];
+  const ids = ["root"];
+  const parents = [""];
+  const values = [rows.reduce((sum, row) => sum + row.branch_count, 0) || 1];
+  const colors = [0];
+  const texts = ["Current filter scope"];
+
+  const featureSeen = new Set();
+  const modelSeen = new Set();
+
+  rows.forEach((row) => {
+    const featureId = `feature:${row.feature_set}`;
+    const modelId = `model:${row.feature_set}:${row.model_name}`;
+    const strategyId = `strategy:${row.feature_set}:${row.model_name}:${row.strategy_label}`;
+
+    if (!featureSeen.has(featureId)) {
+      featureSeen.add(featureId);
+      const featureRows = rows.filter((item) => item.feature_set === row.feature_set);
+      labels.push(row.feature_set);
+      ids.push(featureId);
+      parents.push("root");
+      values.push(featureRows.reduce((sum, item) => sum + item.branch_count, 0));
+      colors.push(featureRows.reduce((sum, item) => sum + item.mean_score, 0) / featureRows.length);
+      texts.push(`${featureRows.length} strategy groups`);
+    }
+
+    if (!modelSeen.has(modelId)) {
+      modelSeen.add(modelId);
+      const modelRows = rows.filter(
+        (item) => item.feature_set === row.feature_set && item.model_name === row.model_name
+      );
+      labels.push(row.model_name);
+      ids.push(modelId);
+      parents.push(featureId);
+      values.push(modelRows.reduce((sum, item) => sum + item.branch_count, 0));
+      colors.push(modelRows.reduce((sum, item) => sum + item.mean_score, 0) / modelRows.length);
+      texts.push(`${modelRows.length} strategy groups`);
+    }
+
+    labels.push(row.strategy_label);
+    ids.push(strategyId);
+    parents.push(modelId);
+    values.push(row.branch_count);
+    colors.push(row.mean_score);
+    texts.push(`Mean ${row.mean_score.toFixed(4)} · Best ${row.max_score.toFixed(4)}`);
+  });
+
+  Plotly.newPlot(
+    "method-treemap",
+    [
+      {
+        type: "treemap",
+        labels,
+        ids,
+        parents,
+        values,
+        text: texts,
+        textinfo: "label",
+        branchvalues: "total",
+        hovertemplate: "<b>%{label}</b><br>%{text}<br>Branches %{value}<extra></extra>",
+        marker: {
+          colors,
+          colorscale: [
+            [0, "#222426"],
+            [0.35, "#575c58"],
+            [0.7, "#a89400"],
+            [1, "#ffe600"],
+          ],
+          colorbar: {
+            title: "Mean R²",
+            outlinewidth: 0,
+            tickfont: { color: palette.muted },
+            titlefont: { color: palette.muted },
+          },
+        },
+        pathbar: { visible: false },
+      },
+    ],
+    themeLayout({
+      margin: { l: 8, r: 8, t: 8, b: 8 },
+    }),
+    plotConfig
+  );
+}
+
+function renderBranchBubble(points) {
+  const modelGroups = analyticsState.data.strategy_filters.model_name.map((model) => ({
+    model,
+    rows: points.filter((row) => row.model_name === model),
+  }));
+
+  const traces = modelGroups
+    .filter((group) => group.rows.length)
+    .map((group) => ({
+      x: group.rows.map((row) => row.r2_ta),
+      y: group.rows.map((row) => row.r2_ec),
+      mode: "markers",
+      type: "scatter",
+      name: group.model,
+      marker: {
+        size: group.rows.map((row) => 10 + row.n_features * 0.35),
+        sizemode: "diameter",
+        color: group.rows.map((row) => palette.emphasisColors[row.target_emphasis] || palette.yellow),
+        line: { color: palette.bg, width: 1.2 },
+        opacity: 0.84,
+      },
+      text: group.rows.map(
+        (row) => `${row.branch_id}<br>${row.feature_set}<br>${row.strategy_label}<br>DRP ${row.r2_drp.toFixed(4)} · Mean ${row.r2_mean.toFixed(4)}`
+      ),
+      hovertemplate: "%{text}<br>TA %{x:.4f}<br>EC %{y:.4f}<extra></extra>",
+    }));
+
+  Plotly.newPlot(
+    "branch-bubble",
+    traces,
+    themeLayout({
+      margin: { l: 64, r: 20, t: 10, b: 56 },
+      xaxis: { title: "TA R²", tickformat: ".3f", zeroline: true },
+      yaxis: { title: "EC R²", tickformat: ".3f", zeroline: true },
+      legend: {
+        orientation: "h",
+        yanchor: "bottom",
+        y: 1.02,
+        x: 0,
+        font: { color: palette.muted },
+      },
+    }),
+    plotConfig
+  );
+}
+
+function renderHeatmapFromPoints(points) {
+  const heatmap = buildFilteredHeatmap(points);
+  const text = heatmap.values.map((row, rowIndex) =>
     row.map((cell, colIndex) =>
       cell == null
         ? "No branch"
-        : `${data.branch_heatmap.feature_order[rowIndex]}<br>${data.branch_heatmap.model_order[colIndex]}<br>Mean R² ${cell}<br>Branches ${data.branch_heatmap.counts[rowIndex][colIndex]}`
+        : `${heatmap.feature_order[rowIndex]}<br>${heatmap.model_order[colIndex]}<br>Mean R² ${cell}<br>Branches ${heatmap.counts[rowIndex][colIndex]}`
     )
   );
 
@@ -367,9 +696,9 @@ function renderHeatmap(data) {
     [
       {
         type: "heatmap",
-        x: data.branch_heatmap.model_order,
-        y: data.branch_heatmap.feature_order,
-        z: data.branch_heatmap.values,
+        x: heatmap.model_order,
+        y: heatmap.feature_order,
+        z: heatmap.values,
         text,
         hoverinfo: "text",
         colorscale: [
@@ -395,61 +724,25 @@ function renderHeatmap(data) {
   );
 }
 
-function renderTopBranches(data) {
-  const rows = [...data.branch_top_table].reverse();
-  Plotly.newPlot(
-    "branch-top-chart",
-    [
-      {
-        x: rows.map((row) => row.r2_mean),
-        y: rows.map((row) => `${row.branch_id} · ${row.model_name}`),
-        type: "bar",
-        orientation: "h",
-        marker: {
-          color: rows.map((row, index) =>
-            index > rows.length - 4 ? palette.yellow : "rgba(255,230,0,0.45)"
-          ),
-        },
-        hovertemplate:
-          "<b>%{y}</b><br>Mean R² %{x:.4f}<extra></extra>",
-      },
-    ],
-    themeLayout({
-      margin: { l: 180, r: 20, t: 8, b: 40 },
-      xaxis: { title: "Mean offline R²", tickformat: ".3f" },
-      yaxis: { automargin: true },
-      showlegend: false,
-    }),
-    plotConfig
-  );
-}
-
-function renderWorkedFailedChart(data) {
-  const points = [
-    { label: "Round 1 benchmark", score: 0.259, color: "#6d716f" },
-    { label: "Round 2 tuned baseline", score: 0.2849, color: "#a1a7a3" },
-    { label: "Round 7 EC weather lift", score: 0.316, color: palette.green },
-    { label: "Round 37 hydro corridor", score: 0.376, color: palette.yellow },
-    { label: "Round 44 guarded POWER recovery", score: 0.376, color: palette.green },
-    { label: "Round 46 direct safe swap", score: 0.3659, color: palette.orange },
-    { label: "Round 46 strong push", score: 0.069, color: "#ff7d7d" },
-    { label: "Round 46 strong alt", score: -0.017, color: "#ff5252" },
-  ];
+function renderRoundBoxplot(data) {
+  const traces = data.round_score_distribution.map((row) => ({
+    type: "box",
+    name: `R${row.round}`,
+    y: row.scores,
+    boxmean: true,
+    fillcolor: "rgba(255,230,0,0.16)",
+    line: { color: palette.yellow, width: 1.2 },
+    marker: { color: palette.yellow, size: 4 },
+    hovertemplate: `Round ${row.round}<br>Score %{y:.4f}<extra></extra>`,
+    showlegend: false,
+  }));
 
   Plotly.newPlot(
-    "worked-failed-chart",
-    [
-      {
-        x: points.map((item) => item.label),
-        y: points.map((item) => item.score),
-        type: "bar",
-        marker: { color: points.map((item) => item.color) },
-        hovertemplate: "%{x}<br>Score %{y:.4f}<extra></extra>",
-      },
-    ],
+    "round-boxplot",
+    traces,
     themeLayout({
-      margin: { l: 56, r: 24, t: 10, b: 120 },
-      xaxis: { tickangle: -22 },
+      margin: { l: 60, r: 20, t: 10, b: 80 },
+      xaxis: { title: "Official round", tickangle: -36 },
       yaxis: { title: "Leaderboard score", tickformat: ".3f" },
       showlegend: false,
     }),
@@ -457,11 +750,227 @@ function renderWorkedFailedChart(data) {
   );
 }
 
-function bindLinks(links) {
-  const challengeLink = document.getElementById("challenge-link");
-  const officialRepoLink = document.getElementById("official-repo-link");
-  challengeLink.href = links.challenge_page;
-  officialRepoLink.href = links.official_repo;
+function renderFamilyBumpChart(data) {
+  const families = [...new Set(data.frontier_family_ranks.map((row) => row.family))];
+  const traces = families.map((family) => {
+    const rows = data.frontier_family_ranks.filter((row) => row.family === family);
+    return {
+      x: rows.map((row) => row.round),
+      y: rows.map((row) => row.rank),
+      text: rows.map((row) => `${family}<br>Score ${row.score.toFixed(3)}`),
+      mode: "lines+markers",
+      type: "scatter",
+      name: family,
+      line: { width: 3, color: palette.familyColors[family] || palette.yellow },
+      marker: { size: 8, color: palette.familyColors[family] || palette.yellow },
+      hovertemplate: "%{text}<br>Round %{x}<extra></extra>",
+    };
+  });
+
+  Plotly.newPlot(
+    "family-bump-chart",
+    traces,
+    themeLayout({
+      margin: { l: 64, r: 16, t: 10, b: 56 },
+      xaxis: { title: "Milestone round", tickmode: "linear" },
+      yaxis: {
+        title: "Frontier rank",
+        autorange: "reversed",
+        dtick: 1,
+        range: [families.length + 0.5, 0.5],
+      },
+    }),
+    plotConfig
+  );
+}
+
+function renderTransitionSlopeChart(data) {
+  const labels = data.selected_transition_scores.map(
+    (row) => `R${row.round}<br>${row.label.replace(/ /g, "<br>")}`
+  );
+
+  Plotly.newPlot(
+    "transition-slope-chart",
+    [
+      {
+        x: labels,
+        y: data.selected_transition_scores.map((row) => row.best_score),
+        name: "Best",
+        mode: "lines+markers",
+        type: "scatter",
+        line: { width: 3, color: palette.yellow },
+        marker: { size: 9, color: palette.yellow },
+        hovertemplate: "Best %{y:.4f}<extra></extra>",
+      },
+      {
+        x: labels,
+        y: data.selected_transition_scores.map((row) => row.median_score),
+        name: "Median",
+        mode: "lines+markers",
+        type: "scatter",
+        line: { width: 2.5, color: palette.green },
+        marker: { size: 8, color: palette.green },
+        hovertemplate: "Median %{y:.4f}<extra></extra>",
+      },
+      {
+        x: labels,
+        y: data.selected_transition_scores.map((row) => row.worst_score),
+        name: "Worst",
+        mode: "lines+markers",
+        type: "scatter",
+        line: { width: 2.5, color: palette.red, dash: "dash" },
+        marker: { size: 8, color: palette.red },
+        hovertemplate: "Worst %{y:.4f}<extra></extra>",
+      },
+    ],
+    themeLayout({
+      margin: { l: 56, r: 20, t: 10, b: 84 },
+      xaxis: { tickangle: -18 },
+      yaxis: { title: "Leaderboard score", tickformat: ".3f" },
+    }),
+    plotConfig
+  );
+}
+
+function renderTargetSummaryCards(data) {
+  data.target_difficulty_summary.forEach((target) => {
+    const host = document.getElementById(`target-summary-${target.target.toLowerCase()}`);
+    host.innerHTML = `
+      <p class="label-chip">${target.target}</p>
+      <h4>${target.title}</h4>
+      <p>Mean branch R² <strong>${target.mean.toFixed(4)}</strong> · Max <strong>${target.max.toFixed(4)}</strong></p>
+      <p>${formatNumber(target.positive_rate * 100, 1)}% of branches stayed above zero for this target.</p>
+    `;
+  });
+}
+
+function renderTargetViolin(data) {
+  const globalMin = Math.min(...data.target_difficulty_summary.flatMap((item) => item.values));
+  const globalMax = Math.max(...data.target_difficulty_summary.flatMap((item) => item.values));
+
+  data.target_difficulty_summary.forEach((target) => {
+    Plotly.newPlot(
+      `target-violin-${target.target.toLowerCase()}`,
+      [
+        {
+          type: "violin",
+          y: target.values,
+          points: false,
+          box: { visible: true },
+          meanline: { visible: true },
+          fillcolor: target.color,
+          line: { color: target.color },
+          opacity: 0.82,
+          hovertemplate: `${target.title}<br>R² %{y:.4f}<extra></extra>`,
+          showlegend: false,
+        },
+      ],
+      themeLayout({
+        margin: { l: 48, r: 12, t: 8, b: 36 },
+        xaxis: { showticklabels: false },
+        yaxis: {
+          title: "Branch R²",
+          tickformat: ".2f",
+          range: [globalMin - 0.03, globalMax + 0.03],
+        },
+        showlegend: false,
+      }),
+      plotConfig
+    );
+  });
+}
+
+function setupTabs() {
+  document.querySelectorAll(".analytics-tab").forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextTab = button.dataset.tab;
+      analyticsState.activeTab = nextTab;
+
+      document.querySelectorAll(".analytics-tab").forEach((tabButton) => {
+        const isActive = tabButton.dataset.tab === nextTab;
+        tabButton.classList.toggle("is-active", isActive);
+        tabButton.setAttribute("aria-selected", String(isActive));
+      });
+
+      document.querySelectorAll(".tab-panel").forEach((panel) => {
+        panel.classList.toggle("is-active", panel.dataset.panel === nextTab);
+      });
+
+      renderAnalyticsTab(nextTab);
+      window.setTimeout(() => window.dispatchEvent(new Event("resize")), 120);
+    });
+  });
+}
+
+function bindStrategyFilters(data) {
+  populateFilterSelect("filter-feature", data.strategy_filters.feature_set);
+  populateFilterSelect("filter-model", data.strategy_filters.model_name);
+  populateFilterSelect("filter-emphasis", data.strategy_filters.target_emphasis);
+
+  document.getElementById("filter-feature").addEventListener("change", (event) => {
+    analyticsState.filters.feature = event.target.value;
+    renderStrategyTab();
+  });
+  document.getElementById("filter-model").addEventListener("change", (event) => {
+    analyticsState.filters.model = event.target.value;
+    renderStrategyTab();
+  });
+  document.getElementById("filter-emphasis").addEventListener("change", (event) => {
+    analyticsState.filters.emphasis = event.target.value;
+    renderStrategyTab();
+  });
+}
+
+function renderStrategyTab() {
+  const points = filteredBranchPoints();
+  renderStrategySummary(points);
+  renderMethodTreemap(points);
+  renderBranchBubble(points);
+  renderHeatmapFromPoints(points);
+}
+
+function renderJourneyTab() {
+  renderRoundBoxplot(analyticsState.data);
+  renderFamilyBumpChart(analyticsState.data);
+  renderTransitionSlopeChart(analyticsState.data);
+}
+
+function renderTargetTab() {
+  renderTrainingMap(analyticsState.data);
+  renderHistogram("hist-ta", analyticsState.data.target_distributions.total_alkalinity, palette.yellow, "Total alkalinity");
+  renderHistogram(
+    "hist-ec",
+    analyticsState.data.target_distributions.electrical_conductance,
+    "rgba(255,230,0,0.68)",
+    "Electrical conductance"
+  );
+  renderHistogram(
+    "hist-drp",
+    analyticsState.data.target_distributions.dissolved_reactive_phosphorus,
+    "rgba(156,209,139,0.8)",
+    "Dissolved reactive phosphorus"
+  );
+  renderTargetSummaryCards(analyticsState.data);
+  renderTargetViolin(analyticsState.data);
+}
+
+function renderAnalyticsTab(tabName) {
+  if (analyticsState.renderedTabs.has(tabName)) {
+    if (tabName === "strategy") {
+      renderStrategyTab();
+    }
+    return;
+  }
+
+  if (tabName === "strategy") {
+    renderStrategyTab();
+  } else if (tabName === "journey") {
+    renderJourneyTab();
+  } else if (tabName === "target") {
+    renderTargetTab();
+  }
+
+  analyticsState.renderedTabs.add(tabName);
 }
 
 function setupStagger() {
@@ -500,6 +1009,8 @@ async function init() {
   try {
     const response = await fetch(DATA_URL);
     const data = await response.json();
+    analyticsState.data = data;
+
     bindLinks(data.links);
     renderHero(data.summary);
     renderMethodStack(data.method_stack);
@@ -509,23 +1020,10 @@ async function init() {
     renderNotebooks(data.selected_notebooks);
     renderFrontier(data.frontier_methods);
     renderLeaderboardChart(data);
-    renderTrainingMap(data);
-    renderHistogram("hist-ta", data.target_distributions.total_alkalinity, palette.yellow, "Total alkalinity");
-    renderHistogram(
-      "hist-ec",
-      data.target_distributions.electrical_conductance,
-      "rgba(255,230,0,0.68)",
-      "Electrical conductance"
-    );
-    renderHistogram(
-      "hist-drp",
-      data.target_distributions.dissolved_reactive_phosphorus,
-      "rgba(255,230,0,0.48)",
-      "Dissolved reactive phosphorus"
-    );
-    renderHeatmap(data);
-    renderTopBranches(data);
-    renderWorkedFailedChart(data);
+    renderWorkedFailedChart();
+    bindStrategyFilters(data);
+    setupTabs();
+    renderAnalyticsTab("strategy");
     setupStagger();
     scrollToHashAfterRender();
   } catch (error) {
