@@ -974,6 +974,16 @@ function renderAnalyticsTab(tabName) {
 }
 
 function setupStagger() {
+  const elements = [...document.querySelectorAll(".stagger")];
+  const revealAll = () => {
+    elements.forEach((element) => element.classList.add("is-visible"));
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    revealAll();
+    return;
+  }
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -983,14 +993,20 @@ function setupStagger() {
         }
       });
     },
-    { threshold: 0.15 }
+    {
+      threshold: 0.05,
+      rootMargin: "0px 0px -8% 0px",
+    }
   );
 
-  document.querySelectorAll(".stagger").forEach((element) => {
+  elements.forEach((element) => {
     if (!element.classList.contains("is-visible")) {
       observer.observe(element);
     }
   });
+
+  // Browser-specific observer issues should never leave the page blank.
+  window.setTimeout(revealAll, 1200);
 }
 
 function scrollToHashAfterRender() {
