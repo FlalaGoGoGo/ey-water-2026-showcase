@@ -9,6 +9,11 @@ This repository is intentionally curated for public sharing. Instead of exposing
 - public data summaries in `docs/assets/data/`
 - a LinkedIn-ready draft in `linkedin/`
 
+## Public links
+
+- GitHub repository: [FlalaGoGoGo/ey-water-2026-showcase](https://github.com/FlalaGoGoGo/ey-water-2026-showcase)
+- GitHub Pages: `https://flalagogogo.github.io/ey-water-2026-showcase/`
+
 ## What this showcase emphasizes
 
 - The challenge was a real-world water quality prediction problem for South African river locations.
@@ -29,7 +34,7 @@ This repository is intentionally curated for public sharing. Instead of exposing
 1. Push this repository to GitHub.
 2. Enable GitHub Pages and set the source to `docs/`.
 3. Open the published page and confirm the charts load.
-4. Update the GitHub repository URL in the LinkedIn post draft if needed.
+4. Verify the published Pages URL after GitHub finishes the initial deployment.
 
 ## Brand and disclosure notes
 

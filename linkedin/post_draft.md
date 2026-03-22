@@ -16,11 +16,11 @@ Our best tracked official score reached **0.376**, but more importantly, this pr
 
 We turned the project into a public case-study page with visuals, milestones, and selected notebooks:
 
-`[GitHub Pages link here]`
+`https://flalagogogo.github.io/ey-water-2026-showcase/`
 
 And we cleaned up the supporting code and materials into a public repository:
 
-`[GitHub repo link here]`
+`https://github.com/FlalaGoGoGo/ey-water-2026-showcase`
 
 If you are also learning applied ML through projects, competitions, or messy real-world data, I would love to hear what helped you most.
 
