@@ -1,4 +1,4 @@
-const DATA_URL = "./assets/data/showcase_data.json";
+const DATA_URL = "./assets/data/showcase_data.json?v=20260323";
 
 const plotConfig = {
   responsive: true,
@@ -1023,7 +1023,7 @@ function scrollToHashAfterRender() {
 
 async function init() {
   try {
-    const response = await fetch(DATA_URL);
+    const response = await fetch(DATA_URL, { cache: "no-store" });
     const data = await response.json();
     analyticsState.data = data;
 
