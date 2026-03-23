@@ -428,16 +428,16 @@ code {
 
 .team-card {
   display: grid;
-  align-content: start;
-  gap: 12px;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
 }
 
 .team-avatar {
-  width: 88px;
+  width: 72px;
   max-width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  justify-self: start;
   border-radius: 50%;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -446,7 +446,26 @@ code {
 
 .team-card__body {
   display: grid;
-  gap: 10px;
+  min-width: 0;
+  gap: 8px;
+}
+
+.team-card__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.team-card__heading h3 {
+  margin: 0;
+}
+
+.team-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .team-card__eyebrow {
@@ -461,8 +480,8 @@ code {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
@@ -479,8 +498,8 @@ code {
 }
 
 .team-link__icon {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   color: var(--ey-yellow);
 }
 
