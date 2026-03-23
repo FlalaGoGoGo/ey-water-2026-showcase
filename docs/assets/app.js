@@ -212,18 +212,44 @@ function renderLessons(items, targetId) {
   `;
 }
 
+function notebookRoundLabel(item) {
+  const title = item.title || "";
+  const path = item.path || "";
+  if (title.toLowerCase().includes("benchmark")) {
+    return "Benchmark";
+  }
+  const match = path.match(/v(\d+)_/i) || title.match(/round\s+(\d+)/i);
+  return match ? `Round ${match[1]}` : "Notebook";
+}
+
+function notebookWorkflowLabel(item) {
+  const title = (item.title || "").toLowerCase();
+  if (title.includes("reference")) {
+    return "Reference";
+  }
+  return "Full workflow";
+}
+
 function renderNotebooks(items) {
   const container = document.getElementById("notebook-list");
+  const count = document.getElementById("notebook-count");
+  if (count) {
+    count.textContent = formatNumber(items.length);
+  }
   container.innerHTML = items
     .map(
       (item) => `
-        <article class="notebook-item">
-          <p class="item-title">${item.title}</p>
-          <p class="item-meta"><span>${item.path}</span></p>
-          <p>${item.summary}</p>
-          <p class="item-meta">
-            <a class="item-link" href="${notebookHref(item.path)}" target="_blank" rel="noreferrer">Open notebook</a>
-          </p>
+        <article class="notebook-card">
+          <div class="notebook-card__badges">
+            <span class="label-chip">${notebookRoundLabel(item)}</span>
+            <span class="label-chip label-chip--muted">${notebookWorkflowLabel(item)}</span>
+          </div>
+          <h4 class="notebook-card__title">${item.title}</h4>
+          <p class="notebook-card__summary">${item.summary}</p>
+          <p class="notebook-card__path"><code>${item.path}</code></p>
+          <div class="notebook-card__actions">
+            <a class="item-link item-link--button" href="${notebookHref(item.path)}" target="_blank" rel="noreferrer">Open notebook</a>
+          </div>
         </article>
       `
     )
@@ -238,11 +264,11 @@ function renderFrontier(items) {
     .map(
       (item) => `
         <article class="frontier-item">
+          <div class="frontier-item__top">
+            <span class="label-chip">Round ${item.round}</span>
+            <span class="frontier-score">${formatNumber(item.score, 3)}</span>
+          </div>
           <p class="item-title">${item.file}</p>
-          <p class="item-meta">
-            <span>Round ${item.round}</span>
-            <span>Score ${formatNumber(item.score, 3)}</span>
-          </p>
           <p>${item.note}</p>
         </article>
       `

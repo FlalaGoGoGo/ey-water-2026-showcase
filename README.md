@@ -3,6 +3,13 @@
 > An EY-inspired public case-study page for our first machine learning competition.
 
 <p align="center">
+  <img alt="Live showcase" src="https://img.shields.io/badge/Live-GitHub%20Pages-111111?style=for-the-badge&logo=githubpages&logoColor=white" />
+  <img alt="Best tracked score" src="https://img.shields.io/badge/Best%20Tracked%20Score-0.376-ffe600?style=for-the-badge" />
+  <img alt="Official rounds" src="https://img.shields.io/badge/Official%20Rounds-45-2b2d31?style=for-the-badge" />
+  <img alt="Public notebooks" src="https://img.shields.io/badge/Public%20Notebooks-7-f37626?style=for-the-badge&logo=jupyter&logoColor=white" />
+</p>
+
+<p align="center">
   <a href="https://flalagogogo.github.io/ey-water-2026-showcase/"><strong>Live Showcase</strong></a>
   ·
   <a href="https://github.com/FlalaGoGoGo/ey-water-2026-showcase/tree/main/notebooks"><strong>Selected Notebooks</strong></a>
@@ -12,16 +19,32 @@
   <a href="https://github.com/Snowflake-Labs/EY-AI-and-Data-Challenge"><strong>Official Challenge Repo</strong></a>
 </p>
 
-![Showcase Homepage](screenshots/showcase_home.png)
+<p align="center">
+  <img src="screenshots/showcase_home.png" alt="Homepage preview of the EY Water Challenge Showcase" width="100%" />
+</p>
+
+## Table Of Contents
+
+- [Start Here](#start-here)
+- [Project Snapshot](#project-snapshot)
+- [Why This Repo Reads Like A Portfolio](#why-this-repo-reads-like-a-portfolio)
+- [Preview The Showcase](#preview-the-showcase)
+- [What We Explored](#what-we-explored)
+- [Selected Notebook Philosophy](#selected-notebook-philosophy)
+- [Repository Structure](#repository-structure)
+- [Run Locally](#run-locally)
+- [Team](#team)
+- [Disclosure](#disclosure)
+- [Source References](#source-references)
 
 ## Start Here
 
-If you only open two things, open these:
+If you only open two things, open these first:
 
 - [Live GitHub Pages showcase](https://flalagogogo.github.io/ey-water-2026-showcase/)
 - [Selected notebook collection](notebooks/)
 
-Additional useful entry points:
+Useful supporting entry points:
 
 - [Public notebook guide](notebooks/README.md)
 - [Public evidence bundle](docs/assets/data/showcase_data.json)
@@ -39,20 +62,20 @@ Additional useful entry points:
 | Training observations used in the showcase summary | `9,319` |
 | Unique sampling sites | `162` |
 
-## What This Repository Is
+## Why This Repo Reads Like A Portfolio
 
 This repository is a cleaned public-facing version of our larger working project for the **2026 EY AI & Data Challenge: Optimizing Clean Water Supply**.
 
-Instead of publishing every raw experiment artifact, we reorganized the work into a more readable story:
+Instead of exposing every raw round folder, we reorganized the work into a more legible public package:
 
 - an `EY-inspired` GitHub Pages site in `docs/`
 - selected public notebooks in `notebooks/`
 - a curated evidence bundle in `docs/assets/data/`
-- outreach assets for LinkedIn in `linkedin/`
+- screenshots and LinkedIn assets for external sharing
 
-The goal is simple: make the work understandable for recruiters, classmates, and technical readers without forcing them to dig through dozens of round folders.
+The idea is simple: keep the technical work real, but package it in a way that a recruiter, classmate, or collaborator can actually follow.
 
-## Preview the Showcase
+## Preview The Showcase
 
 <table>
   <tr>
@@ -60,7 +83,7 @@ The goal is simple: make the work understandable for recruiters, classmates, and
       <img src="screenshots/showcase_home.png" alt="Homepage preview" />
     </td>
     <td width="50%">
-      <img src="screenshots/showcase_evidence.png" alt="Analytics evidence preview" />
+      <img src="screenshots/showcase_evidence.png" alt="Evidence overview graphic" />
     </td>
   </tr>
   <tr>
@@ -69,8 +92,8 @@ The goal is simple: make the work understandable for recruiters, classmates, and
       Challenge framing, team section, project snapshot, and live links.
     </td>
     <td>
-      <strong>Evidence wall layer</strong><br />
-      Strategy tabs, target behavior plots, and leaderboard progression charts.
+      <strong>Evidence overview layer</strong><br />
+      Strategy tabs, leaderboard thinking, and the structure of the evidence wall.
     </td>
   </tr>
 </table>
@@ -82,17 +105,17 @@ This project evolved as a full experimentation program rather than a single note
 Main method families included:
 
 - benchmark reproduction and challenge-package validation
-- separate target-wise modeling for `TA`, `EC`, and `DRP`
+- target-wise modeling for `TA`, `EC`, and `DRP`
 - Landsat and TerraClimate feature enrichment
-- hydro, weather, terrain, and rainfall feature probes
-- leaderboard-guided calibration, gating, and fallback logic
+- hydro, weather, terrain, soil, and rainfall probes
+- calibration, gating, blending, and safe fallback logic
 - round-by-round failure review when aggressive pushes did not generalize
 
 ## Selected Notebook Philosophy
 
-The notebooks in this public repo are not short update patches.
+The notebooks in this public repository are not short “delta updates” from an earlier version.
 
-Each selected notebook is meant to be legible on its own and begins from the start of the workflow:
+Each selected notebook is meant to stand on its own and starts from the beginning of the workflow:
 
 - package imports
 - data loading from the official GitHub challenge files
@@ -115,13 +138,13 @@ Current public notebook set:
 ```text
 docs/                         GitHub Pages site
 docs/assets/data/             public JSON bundle that powers the charts
-docs/assets/images/           team portraits and site images
+docs/assets/images/           team portraits and site assets
 notebooks/                    selected public full-workflow notebooks
 notebooks/assets/             helper CSV assets used by later notebooks
-linkedin/                     post draft and social assets
+linkedin/                     LinkedIn draft and social assets
+screenshots/                  README preview images
 scripts/build_showcase_data.py
 scripts/build_public_notebooks.py
-screenshots/                  README preview images
 ```
 
 ## Run Locally
@@ -135,7 +158,7 @@ python3 -m http.server 8000
 
 Then open `http://localhost:8000/docs/`.
 
-### 2. Rebuild the public data bundle
+### 2. Rebuild the public data bundle and notebook manifest
 
 ```bash
 cd ey-water-2026-showcase
