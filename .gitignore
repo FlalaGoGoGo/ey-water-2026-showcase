@@ -1,3 +1,7 @@
 .DS_Store
 scripts/__pycache__/
 pic/
+*_preview.png
+live_*.png
+hero_after_resize.png
+team_section_round*.png
