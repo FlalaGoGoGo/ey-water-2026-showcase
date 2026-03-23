@@ -125,7 +125,7 @@ code {
   grid-template-columns: 1.25fr 0.95fr;
   gap: 28px;
   padding: 42px;
-  min-height: clamp(440px, 48vh, 640px);
+  min-height: clamp(360px, 42vh, 560px);
   border: 1px solid var(--surface-border);
   border-radius: 30px;
   background:
@@ -156,8 +156,8 @@ code {
 .hero h1 {
   margin: 0;
   max-width: 14ch;
-  font-size: clamp(2.8rem, 7vw, 5.5rem);
-  line-height: 0.95;
+  font-size: clamp(2.2rem, 5.2vw, 4.35rem);
+  line-height: 0.92;
   letter-spacing: -0.05em;
 }
 
@@ -176,8 +176,8 @@ code {
 
 .hero__lede {
   max-width: 64ch;
-  margin: 22px 0 28px;
-  font-size: 1.06rem;
+  margin: 18px 0 22px;
+  font-size: 0.98rem;
 }
 
 .hero__actions {
@@ -477,6 +477,7 @@ code {
 }
 
 .team-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -495,6 +496,31 @@ code {
   transform: translateY(-1px);
   border-color: rgba(255, 230, 0, 0.32);
   background: rgba(255, 255, 255, 0.05);
+}
+
+.team-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(12, 13, 14, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font-size: 0.72rem;
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.team-link:hover::after,
+.team-link:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .team-link__icon {

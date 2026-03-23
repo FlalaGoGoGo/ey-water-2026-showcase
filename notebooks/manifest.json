@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Official Benchmark Reference",
+    "path": "notebooks/reference_benchmark_model_notebook_snowflake.ipynb",
+    "summary": "Official starter notebook from the challenge package."
+  },
+  {
+    "title": "Round 11 EC Guard Full Workflow",
+    "path": "notebooks/v11_4_guard_ec.ipynb",
+    "summary": "Full workflow notebook for the early EC-focused stabilization phase."
+  },
+  {
+    "title": "Round 15 TA Refine Push Full Workflow",
+    "path": "notebooks/v15_3_ta_refine_push.ipynb",
+    "summary": "Full workflow notebook for the TA-focused refinement phase that moved the score into the mid-0.36 range."
+  },
+  {
+    "title": "Round 20 Structural TA+EC Full Workflow",
+    "path": "notebooks/v20_4_ta_ec_struct_farcal_alt.ipynb",
+    "summary": "Full workflow notebook for the structural TA+EC routing phase before the later plateau."
+  },
+  {
+    "title": "Round 37 Hydro Corridor Breakthrough",
+    "path": "notebooks/v37_5_ta40_ec40_push.ipynb",
+    "summary": "Full workflow notebook for the first 0.376 breakthrough using the 40/40 Hydro corridor push."
+  },
+  {
+    "title": "Round 38 CHIRPS Safe Probe",
+    "path": "notebooks/v38_5_chirps_delta_safe.ipynb",
+    "summary": "Full workflow notebook showing how CHIRPS wet-month gating entered the late-stage frontier safely."
+  },
+  {
+    "title": "Round 42 Challenger Push",
+    "path": "notebooks/v42_5_ta60_ec60_challenger_push.ipynb",
+    "summary": "Full workflow notebook for a late plateau challenger that pushed TA/EC outward with a CHIRPS-based EC guard."
+  }
+]

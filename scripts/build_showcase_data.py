@@ -14,6 +14,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE = ROOT.parent
 SHOWCASE_JSON_PATH = ROOT / "docs/assets/data/showcase_data.json"
+NOTEBOOK_MANIFEST_PATH = ROOT / "notebooks/manifest.json"
 LEADERBOARD_PATH = WORKSPACE / "ey-water-2026/experiments/round_tracking/leaderboard_scores.csv"
 BRANCH_SUMMARY_PATH = WORKSPACE / "ey-water-2026/experiments/outputs/branch_summary.csv"
 TRAINING_DATASET_PATH = WORKSPACE / "ey-water-2026/EY-AI-and-Data-Challenge-main/water_quality_training_dataset.csv"
@@ -61,6 +62,12 @@ def load_existing_showcase() -> dict[str, Any]:
     if SHOWCASE_JSON_PATH.exists():
         return json.loads(SHOWCASE_JSON_PATH.read_text(encoding="utf-8"))
     return {}
+
+
+def load_notebook_manifest() -> list[dict[str, Any]]:
+    if NOTEBOOK_MANIFEST_PATH.exists():
+        return json.loads(NOTEBOOK_MANIFEST_PATH.read_text(encoding="utf-8"))
+    return []
 
 
 
@@ -437,6 +444,7 @@ def build_strategy_filters(points: list[dict[str, Any]]) -> dict[str, list[str]]
 
 def main() -> None:
     existing = load_existing_showcase()
+    notebook_manifest = load_notebook_manifest()
     scoreboard = read_csv(LEADERBOARD_PATH)
     branch_summary = read_csv(BRANCH_SUMMARY_PATH)
     training_df = read_training_dataset()
@@ -466,7 +474,7 @@ def main() -> None:
         "official_submissions": int(len(scoreboard)),
         "latest_round": int(scoreboard["round"].max()),
         "tracked_branch_notebooks": int(len(branch_summary)),
-        "public_notebooks": int(len(existing.get("selected_notebooks", []))),
+        "public_notebooks": int(len(notebook_manifest or existing.get("selected_notebooks", []))),
         **training_summary,
     }
 
@@ -482,7 +490,7 @@ def main() -> None:
         "method_stack": existing.get("method_stack", []),
         "milestones": milestones,
         "worked_failed": existing.get("worked_failed", {"worked": [], "failed": []}),
-        "selected_notebooks": existing.get("selected_notebooks", []),
+        "selected_notebooks": notebook_manifest or existing.get("selected_notebooks", []),
         "frontier_methods": existing.get("frontier_methods", []),
         "leaderboard_by_round": leaderboard_by_round,
         "round_score_distribution": round_distribution,

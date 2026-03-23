@@ -8,7 +8,7 @@
     "official_submissions": 214,
     "latest_round": 46,
     "tracked_branch_notebooks": 180,
-    "public_notebooks": 5,
+    "public_notebooks": 7,
     "samples": 9319,
     "unique_sites": 162,
     "date_start": "2011-01-02",
@@ -146,27 +146,37 @@
     {
       "title": "Official Benchmark Reference",
       "path": "notebooks/reference_benchmark_model_notebook_snowflake.ipynb",
-      "summary": "The starting point provided by the official challenge package."
+      "summary": "Official starter notebook from the challenge package."
     },
     {
-      "title": "Round 11 EC Guard Notebook",
+      "title": "Round 11 EC Guard Full Workflow",
       "path": "notebooks/v11_4_guard_ec.ipynb",
-      "summary": "A curated public notebook brief for the EC-focused stabilization phase."
+      "summary": "Full workflow notebook for the early EC-focused stabilization phase."
     },
     {
-      "title": "Round 15 TA Refine Push",
+      "title": "Round 15 TA Refine Push Full Workflow",
       "path": "notebooks/v15_3_ta_refine_push.ipynb",
-      "summary": "A curated public notebook brief for the TA-focused refinement phase that pushed the score into the mid 0.36 range."
+      "summary": "Full workflow notebook for the TA-focused refinement phase that moved the score into the mid-0.36 range."
     },
     {
-      "title": "Round 18 DRP Ultralight Probe",
-      "path": "notebooks/v18_5_ta_core_drp_ultralight.ipynb",
-      "summary": "A curated public notebook brief for a careful DRP probe without destabilizing the full submission."
-    },
-    {
-      "title": "Round 20 Structural TA+EC Notebook",
+      "title": "Round 20 Structural TA+EC Full Workflow",
       "path": "notebooks/v20_4_ta_ec_struct_farcal_alt.ipynb",
-      "summary": "A curated public notebook brief showing the move toward structural routing and corridor-aware adjustments."
+      "summary": "Full workflow notebook for the structural TA+EC routing phase before the later plateau."
+    },
+    {
+      "title": "Round 37 Hydro Corridor Breakthrough",
+      "path": "notebooks/v37_5_ta40_ec40_push.ipynb",
+      "summary": "Full workflow notebook for the first 0.376 breakthrough using the 40/40 Hydro corridor push."
+    },
+    {
+      "title": "Round 38 CHIRPS Safe Probe",
+      "path": "notebooks/v38_5_chirps_delta_safe.ipynb",
+      "summary": "Full workflow notebook showing how CHIRPS wet-month gating entered the late-stage frontier safely."
+    },
+    {
+      "title": "Round 42 Challenger Push",
+      "path": "notebooks/v42_5_ta60_ec60_challenger_push.ipynb",
+      "summary": "Full workflow notebook for a late plateau challenger that pushed TA/EC outward with a CHIRPS-based EC guard."
     }
   ],
   "frontier_methods": [
