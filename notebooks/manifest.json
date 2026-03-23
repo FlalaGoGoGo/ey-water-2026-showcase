@@ -1,37 +1,34 @@
-[
-  {
-    "title": "Official Benchmark Reference",
-    "path": "notebooks/reference_benchmark_model_notebook_snowflake.ipynb",
-    "summary": "Official starter notebook from the challenge package."
-  },
-  {
-    "title": "Round 11 EC Guard Full Workflow",
-    "path": "notebooks/v11_4_guard_ec.ipynb",
-    "summary": "Full workflow notebook for the early EC-focused stabilization phase."
-  },
-  {
-    "title": "Round 15 TA Refine Push Full Workflow",
-    "path": "notebooks/v15_3_ta_refine_push.ipynb",
-    "summary": "Full workflow notebook for the TA-focused refinement phase that moved the score into the mid-0.36 range."
-  },
-  {
-    "title": "Round 20 Structural TA+EC Full Workflow",
-    "path": "notebooks/v20_4_ta_ec_struct_farcal_alt.ipynb",
-    "summary": "Full workflow notebook for the structural TA+EC routing phase before the later plateau."
-  },
-  {
-    "title": "Round 37 Hydro Corridor Breakthrough",
-    "path": "notebooks/v37_5_ta40_ec40_push.ipynb",
-    "summary": "Full workflow notebook for the first 0.376 breakthrough using the 40/40 Hydro corridor push."
-  },
-  {
-    "title": "Round 38 CHIRPS Safe Probe",
-    "path": "notebooks/v38_5_chirps_delta_safe.ipynb",
-    "summary": "Full workflow notebook showing how CHIRPS wet-month gating entered the late-stage frontier safely."
-  },
-  {
-    "title": "Round 42 Challenger Push",
-    "path": "notebooks/v42_5_ta60_ec60_challenger_push.ipynb",
-    "summary": "Full workflow notebook for a late plateau challenger that pushed TA/EC outward with a CHIRPS-based EC guard."
-  }
-]
+{
+  "notebooks": [
+    {
+      "title": "Round 11 EC Guard Full Workflow",
+      "path": "notebooks/v11_4_guard_ec.ipynb",
+      "summary": "Archive-backed public workflow for the guarded EC branch from round 11. The notebook starts from official GitHub data, builds a readable feature table, and then reproduces the archived public submission exactly."
+    },
+    {
+      "title": "Round 15 TA Refine Push Full Workflow",
+      "path": "notebooks/v15_3_ta_refine_push.ipynb",
+      "summary": "Archive-backed public workflow for the round 15 TA refinement branch. The notebook walks through data loading, feature scaffolding, archived-branch reproduction, and simple diagnostics for the exported file."
+    },
+    {
+      "title": "Round 20 Structural TA+EC Full Workflow",
+      "path": "notebooks/v20_4_ta_ec_struct_farcal_alt.ipynb",
+      "summary": "Archive-backed public workflow for the structural TA+EC branch from round 20. It emphasizes raw-data joins, engineered context features, and exact reproduction of the public archive file for a later-stage structural probe."
+    },
+    {
+      "title": "Round 37 Hydro Corridor Breakthrough",
+      "path": "notebooks/v37_5_ta40_ec40_push.ipynb",
+      "summary": "Archive-backed public workflow for the first branch that reached the tracked best score of 0.376. The notebook reproduces the archived winner while still starting from official GitHub inputs and readable diagnostics."
+    },
+    {
+      "title": "Round 38 CHIRPS Safe Probe",
+      "path": "notebooks/v38_5_chirps_delta_safe.ipynb",
+      "summary": "Archive-backed public workflow for the CHIRPS-guided safe probe that followed the breakthrough branch. It demonstrates how an external signal can enter the workflow without abandoning a stable archive-backed target."
+    },
+    {
+      "title": "Round 42 Challenger Push",
+      "path": "notebooks/v42_5_ta60_ec60_challenger_push.ipynb",
+      "summary": "Archive-backed public workflow for a later challenger branch that pushed farther on the TA/EC boundary while remaining reproducible from public assets."
+    }
+  ]
+}
