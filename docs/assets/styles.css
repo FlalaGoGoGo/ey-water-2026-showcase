@@ -579,7 +579,7 @@ code {
 .repo-card__lede--block {
   max-width: none;
   width: 100%;
-  margin: 0 0 24px;
+  margin: 0 0 32px;
 }
 
 .repo-card__count {
