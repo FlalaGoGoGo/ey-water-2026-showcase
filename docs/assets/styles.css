@@ -261,7 +261,7 @@ code {
 }
 
 .section {
-  margin-top: 28px;
+  margin-top: 34px;
   padding: 28px 0 12px;
 }
 
@@ -297,6 +297,11 @@ code {
 .lessons-grid,
 .repo-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.repo-grid {
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.9fr);
+  align-items: start;
 }
 
 .evidence-grid {
@@ -571,6 +576,11 @@ code {
   color: var(--text-muted);
 }
 
+.repo-card__lede--block {
+  max-width: 72ch;
+  margin: 0 0 18px;
+}
+
 .repo-card__count {
   display: inline-flex;
   align-items: center;
@@ -603,8 +613,11 @@ code {
 
 .notebook-card {
   display: grid;
+  align-content: start;
   gap: 12px;
+  min-width: 0;
   min-height: 238px;
+  grid-template-rows: auto auto 1fr auto auto;
 }
 
 .notebook-card__badges {
@@ -636,10 +649,14 @@ code {
   color: var(--text-soft);
   font-size: 0.84rem;
   line-height: 1.5;
+  min-width: 0;
 }
 
 .notebook-card__path code {
+  display: block;
   white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .notebook-card__actions {
@@ -674,6 +691,12 @@ code {
 
 .frontier-item {
   margin: 0;
+}
+
+.repo-card--compact {
+  grid-column: 1 / -1;
+  width: min(100%, 760px);
+  justify-self: center;
 }
 
 .frontier-item__top {
@@ -772,6 +795,22 @@ code {
 
 .lesson-card--warning {
   border-color: rgba(255, 179, 125, 0.24);
+}
+
+#lessons .chart-card--wide {
+  margin-bottom: 14px;
+}
+
+.lessons-grid {
+  margin-top: 10px;
+}
+
+.lesson-card .eyebrow {
+  margin-bottom: 18px;
+}
+
+.lesson-card .lesson-list {
+  margin-top: 8px;
 }
 
 .stack-list,
