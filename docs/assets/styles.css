@@ -300,7 +300,7 @@ code {
 }
 
 .repo-grid {
-  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.9fr);
+  grid-template-columns: 1fr;
   align-items: start;
 }
 
@@ -577,8 +577,9 @@ code {
 }
 
 .repo-card__lede--block {
-  max-width: 72ch;
-  margin: 0 0 18px;
+  max-width: none;
+  width: 100%;
+  margin: 0 0 24px;
 }
 
 .repo-card__count {
@@ -686,17 +687,23 @@ code {
 
 .frontier-stack {
   display: grid;
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
 
 .frontier-item {
   margin: 0;
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-width: 0;
+  min-height: 200px;
 }
 
-.repo-card--compact {
+.repo-card--frontier {
   grid-column: 1 / -1;
-  width: min(100%, 760px);
-  justify-self: center;
+  width: 100%;
+  justify-self: stretch;
 }
 
 .frontier-item__top {
@@ -704,7 +711,7 @@ code {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .frontier-score {
@@ -912,6 +919,10 @@ code {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .frontier-stack {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .repo-card__header {
     flex-direction: column;
   }
@@ -958,6 +969,10 @@ code {
   }
 
   .notebook-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .frontier-stack {
     grid-template-columns: 1fr;
   }
 }
